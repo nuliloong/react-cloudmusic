@@ -5,6 +5,7 @@ import reduxThunk from "redux-thunk";
 // import storage from "redux-persist/lib/storage";
 import reduxPromise from "redux-promise";
 import user from '@/redux/modules/user/reducer'
+import play from '@/redux/modules/play/reducer'
 // 开启devtools
 // import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -13,6 +14,7 @@ import user from '@/redux/modules/user/reducer'
 // 创建reducer(拆分reducer)
 const reducer = combineReducers({
   user,
+  play
 })
 
 

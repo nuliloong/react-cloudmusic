@@ -2,11 +2,15 @@ import { SET_USER_ID, SET_LAYOUT_SIDER_WIDTH, CHANGE_LOGIN_SHOW, SET_USER_INFO }
 import produce from 'immer';
 
 const prevState = {
+  // 用户信息
   userInfo: JSON.parse(localStorage.getItem('user_info') || '{}'),
+  // 用户id
   userId: localStorage.getItem('user_id') || '',
+  // 系统设置
   userConfiguration: {
     layoutSiderWidth: 200
   },
+  // 登录弹窗
   loginShow: false,
 }
 const userReducer = (state = prevState, { type, data }) =>

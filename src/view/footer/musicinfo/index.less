@@ -1,71 +1,104 @@
-.musicinfo {
+.music-footer {
   flex: 1;
-  display: flex;
-  outline: 1px solid skyblue;
-  height: 100%;
-  &-left {
-    padding: 0 10px;
+  transition: transform .7s ease-in-out;
+  transform: translateY(-100%);
+  .musicinfo {
     display: flex;
-    align-items: center;
-    .img-box {
-      width: 50px;
-      height: 50px;
-      .img-box(100%);
-      cursor: pointer;
-      &:hover {
+    height: 100%;
+    &-left {
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      .img-box {
+        width: 50px;
+        height: 50px;
+        .img-box(100%);
+        cursor: pointer;
+        &:hover {
+          .expand {
+            opacity: 1;
+          }
+          .img {
+            filter: blur(2px);
+          }
+        }
         .expand {
-          opacity: 1;
-        }
-        .img {
-          filter: blur(2px);
+          opacity: 0;
+          font-size: 20px;
+          border-radius: inherit;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          color: #e0e0e0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #00000069;
         }
       }
-      .expand {
-        opacity: 0;
-        font-size: 20px;
-        border-radius: inherit;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        color: #e0e0e0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #00000069;
-      }
     }
-  }
-  &-name {
-    width: 150px;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    // padding-left: 10px;
-    overflow: hidden;
-    .musicname {
-      font-size: 16px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .artist {
-      .name {
+    &-name {
+      width: 150px;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      // padding-left: 10px;
+      overflow: hidden;
+      .musicname {
+        font-size: 16px;
         cursor: pointer;
         white-space: nowrap;
       }
-    }
-  }
-  &-like {
-    font-size: 20px;
-    margin-left: 10px;
-    margin-top: 11px;
-    .anticon {
-      color: @default-theme-grayColor;
-      cursor: pointer;
-      &:hover {
-        color: @default-theme-textColor;
+      .artist {
+        .name {
+          cursor: pointer;
+          white-space: nowrap;
+        }
       }
     }
+    &-like {
+      font-size: 20px;
+      margin-left: 10px;
+      margin-top: 11px;
+      .anticon {
+        color: @default-theme-grayColor;
+        cursor: pointer;
+        &:hover {
+          color: @default-theme-textColor;
+        }
+      }
+    }
+  }
+  .details {
+    height: 100%;
+    // background-color: pink;
+    display: flex;
+    font-size: 18px;
+    .normal {
+      width: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .anticon {
+      cursor: pointer;
+        padding: 15px;
+      }
+    }
+    .love {
+      display: flex;
+      align-items: center;
+      .anticon {
+      cursor: pointer;
+        border: 1px solid @default-theme-border;
+        padding: 10px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+    }
+  }
+  &.open {
+    transform: translateY(0);
   }
 }

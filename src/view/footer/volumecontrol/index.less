@@ -1,5 +1,37 @@
-
-  .volumecontrol {
-    flex: 1;
-    outline: 1px solid blue;
+.volumecontrol {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 18px;
+  .ant-slider {
+    width: 120px;
+    // margin-left: 10px;
+    margin-right: 10px;
+    &-track {
+      background-color: @default-theme-color !important;
+    }
+    &-handle {
+      border: none !important;
+      width: 11px;
+      height: 11px;
+      margin-top: -4px;
+      outline: none;
+      box-shadow: none !important;
+      background-color: @default-theme-color !important;
+    }
+  }
+  .vbtn {
+    cursor: pointer;
+    // margin-right: 10px;
+    padding: 10px;
+  }
+  .v-musiclist {
+    cursor: pointer;
+    margin-right: 10px;
+    padding: 10px;
+  }
+}
+  .ant-slider-tooltip .ant-tooltip-inner {
+    display: none;
   }
