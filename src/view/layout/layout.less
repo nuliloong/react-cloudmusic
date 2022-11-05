@@ -1,0 +1,60 @@
+.layout-container {
+	min-width: 850px;
+	height: 100%;
+	box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+	border-radius: 7px;
+	overflow: auto;
+	border: 1px solid #00000029;
+	color: @default-theme-textColor;
+
+	.ant-layout-header {
+		padding: 0;
+		height: 60px;
+		line-height: initial;
+		color: @default-theme-headerTextColor;
+		background-color: @default-theme-color;
+	}
+
+	.ant-layout-sider {
+		flex: none;
+		max-width: none;
+		min-width: initial;
+		width: initial;
+		position: relative;
+		background-color: @default-theme-bgcolor;
+		border-right: 1px solid @default-theme-border;
+		// .ant-layout-sider-children{
+		// 	overflow: auto;
+		// }
+	}
+
+	.ant-layout-content {
+		overflow: overlay;
+		background-color: @default-theme-bgcolor;
+	}
+
+	.ant-layout-footer {
+		
+		z-index: 9999999999;
+		padding: 0;
+		height: 75px;
+		// line-height: 75px;
+		background-color: @default-theme-bgcolor;
+		border-top: 1px solid @default-theme-border;
+		box-sizing: content-box;
+	}
+}
+
+.drag-line_vertical {
+	position: absolute;
+	top: 0;
+	right: -2px;
+	height: 100%;
+	width: 4px;
+	cursor: ew-resize;
+	transition: all 0.5s;
+	// &:hover {
+	//   opacity: 1;
+	//   background-color: red;
+	// }
+}

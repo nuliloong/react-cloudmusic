@@ -1,0 +1,108 @@
+.songlist {
+  max-width: @default-theme-maxWidth;
+  margin: auto;
+  padding: 10px 30px;
+  &-banner {
+    background-size: 6000px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    position: relative;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    cursor: pointer;
+    background-color: #e2e2e2;
+    &-left {
+      border-radius: 5px;
+      width: 140px;
+      height: 140px;
+      .img-box {
+        .img-box(100%);
+        background-color: #0000001c;
+      }
+    }
+    &-right {
+      flex: 1;
+      padding-left: 10px;
+      .button {
+        margin-top: 20px;
+        button {
+          cursor: inherit;
+          font-size: 13px;
+          color: #e7aa5a;
+          display: flex;
+          align-items: center;
+          border: 1px solid #e7aa5a;
+          outline: none;
+          padding: 5px 15px;
+          background-color: #00000000;
+          border-radius: 50px;
+          .anticon {
+            font-size: 16px;
+            margin-top: 1px;
+            padding-right: 5px;
+          }
+        }
+      }
+      .name {
+        color: #fff;
+        font-size: 16px;
+        margin-top: 15px;
+        margin-bottom: 3px;
+      }
+      .desc {
+        .overflow(2);
+        font-size: 12px;
+        color: #b5b5b5;
+      }
+    }
+  }
+  &-tagbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .tagbtn {
+      min-width: 100px;
+      padding: 3px 10px;
+      background: #fff;
+      border: 1px solid @default-theme-border;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 15px 0;
+      &:hover {
+        background-color: #0000000a;
+      }
+    }
+    .taglist {
+      button {
+        background-color: #ffffff;
+        cursor: pointer;
+        border: none;
+        padding: 2px 10px;
+        // margin-left: 10px;
+        border-radius: 50px;
+        font-size: 12px;
+        &:hover {
+          color: @default-theme-hoverTextColor;
+        }
+      }
+      .active {
+        color: @default-theme-color;
+        background-color: #ec414118;
+        &:hover {
+          color: @default-theme-color;
+          background-color: #ec414120;
+        }
+      }
+    }
+  }
+  &-list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .listloading{
+    min-height: 200px;
+  }
+}

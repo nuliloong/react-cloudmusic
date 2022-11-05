@@ -1,0 +1,25 @@
+.menu-container {
+  @item-bgcolor: #ebebeb60;
+  padding: 10px 9px 10px 10px;
+  .menu-list {
+    // height: 1000px;
+    // background-color: skyblue;
+    &-item {
+      .my-navlink();
+      display: block;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 5px;
+      margin-bottom: 2px;
+      border-radius: 5px;
+      &:hover {
+        font-weight: bold;
+        background-color: @item-bgcolor;
+      }
+    }
+    &-item.active {
+      font-weight: bold;
+      background-color: @item-bgcolor;
+    }
+  }
+}

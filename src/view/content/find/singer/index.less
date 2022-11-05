@@ -1,0 +1,31 @@
+.leaderboard {
+  max-width: @default-theme-maxWidth;
+  margin: auto;
+  padding: 10px 30px;
+  &-list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    padding-top: 5px;
+    min-height: 200px;
+    &-item {
+      .img-box {
+        .img-box(100%);
+        cursor: pointer;
+      }
+      .item-user {
+        padding-top: 5px;
+        &-name {
+          cursor: pointer;
+          &:hover {
+            color: @default-theme-hoverTextColor;
+          }
+        }
+      }
+    }
+  }
+  .more {
+    text-align: center;
+    margin-top: 20px;
+  }
+}

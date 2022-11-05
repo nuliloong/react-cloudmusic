@@ -1,0 +1,75 @@
+.new-music {
+  display: grid;
+  gap: 15px 10px;
+  grid-template-columns: repeat(3, 1fr);
+  .music-box {
+    display: flex;
+    border-radius: 5px;
+    &-left {
+      width: 50px;
+      height: 50px;
+      background-color: #eee;
+      border-radius: 5px;
+      position: relative;
+      cursor: pointer;
+      &-playicon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0px;
+        right: 0px;
+        margin: auto;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #ffffffdb;
+        .playicon-img {
+          top: 0;
+          width: 14px;
+          height: 14px;
+          left: 3px;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          position: absolute;
+          display: block;
+        }
+      }
+      img {
+        width: 50px;
+        border-radius: 5px;
+      }
+    }
+    &-right {
+      cursor: pointer;
+      flex: 1;
+      padding-left: 10px;
+      line-height: 16px;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-evenly;
+      .right-name {
+        font-size: 14px;
+        padding-top: 5px;
+        .overflow(1);
+        &-tip {
+          color: @default-theme-grayColor;
+        }
+      }
+      .right-user {
+        font-size: 12px;
+        color: @default-theme-grayColor;
+        padding-top: 5px;
+        .overflow(1);
+        .name {
+          &:hover {
+            color: @default-theme-textColor;
+          }
+        }
+      }
+    }
+    &:hover {
+      background-color: #eaeaea;
+    }
+  }
+}

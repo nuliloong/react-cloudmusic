@@ -1,0 +1,99 @@
+.newsong {
+  &-typebox {
+    max-width: @default-theme-maxWidth;
+    height: 30px;
+    padding: 0 30px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .newsong-type {
+      display: flex;
+      .item {
+        margin-right: 25px;
+        cursor: pointer;
+        &:hover {
+          color: #000;
+        }
+        &.active {
+          font-weight: bold;
+        }
+      }
+    }
+    .newsong-play {
+      display: block;
+      &.hiden {
+        display: none;
+      }
+      button {
+        cursor: pointer;
+        background-color: #fff;
+        border: 1px solid @default-theme-border;
+        padding: 2px 10px;
+        margin-left: 10px;
+        border-radius: 50px;
+        font-size: 12px;
+        .anticon {
+          margin-right: 3px;
+        }
+        &:hover {
+          background-color: #0000000a;
+        }
+      }
+      .backr {
+        color: #fff;
+        background-color: @default-theme-color;
+        &:hover {
+          background-color: #d62e2e;
+        }
+      }
+    }
+  }
+  &-list {
+    max-width: @default-theme-maxWidth;
+    margin: auto;
+    padding-bottom: 10px;
+    // height: 1000px;
+    .index-col {
+      width: 50px;
+      padding-right: 0;
+      color: @default-theme-grayColor;
+    }
+    .duration-col {
+      width: 80px;
+      padding-left: 0;
+      padding-right: 30px;
+      color: @default-theme-grayColor;
+    }
+    .ant-table {
+      .ant-table-row {
+        &:nth-child(odd) {
+          background-color: @default-theme-listBgColor;
+        }
+        &:hover .ant-table-cell {
+          background-color: @default-theme-listBgColorHover !important;
+        }
+        .ant-table-cell {
+          border: none;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          vertical-align: middle;
+          .name {
+            &:hover {
+              color: #000;
+              cursor: pointer;
+            }
+          }
+          .name-box {
+            display: flex;
+            align-items: center;
+            &-right {
+              .overflow();
+              padding-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

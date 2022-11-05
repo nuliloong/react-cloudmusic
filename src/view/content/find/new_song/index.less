@@ -1,0 +1,27 @@
+.newsong {
+  // max-width: @default-theme-maxWidth;
+  // margin: auto;
+  // padding: 10px 30px;
+  &-class {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+    .border {
+      border: 1px solid @default-theme-border;
+      border-radius: 50px;
+      .button {
+        .my-navlink();
+        display: inline-block;
+        cursor: pointer;
+        padding: 5px 30px;
+        border-radius: 50px;
+        font-size: 12px;
+      }
+      .active {
+        color: #fff;
+        background-color: @default-theme-grayColor;
+      }
+    }
+  }
+}

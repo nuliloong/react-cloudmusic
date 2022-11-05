@@ -1,0 +1,72 @@
+.dj-list {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(2, 1fr);
+  .dj-box {
+    display: flex;
+    border-radius: 5px;
+    &-left {
+      width: 80px;
+      height: 80px;
+      background-color: #eee;
+      border-radius: 5px;
+      position: relative;
+      cursor: pointer;
+      &-playicon {
+        position: absolute;
+        bottom: 7px;
+        right: 7px;
+        width: 27px;
+        height: 27px;
+        border-radius: 50%;
+        background-color: #ffffffdb;
+        .playicon-img {
+          top: 0;
+          width: 14px;
+          height: 14px;
+          left: 3px;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          position: absolute;
+          display: block;
+        }
+      }
+      img {
+        width: 80px;
+        border-radius: 5px;
+      }
+    }
+    &-right {
+      padding-left: 10px;
+      line-height: 16px;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-evenly;
+      .right-name {
+        font-size: 14px;
+      }
+      .right-tag {
+        font-size: 12px;
+        .tag {
+          color: @default-theme-grayColor;
+          border: 1px solid #dbdbdb;
+          padding: 0 5px;
+          margin-right: 5px;
+          border-radius: 3px;
+        }
+      }
+      .right-user {
+        cursor: pointer;
+        font-size: 12px;
+        color: @default-theme-grayColor;
+        &:hover{
+          color: @default-theme-textColor;
+        }
+      }
+    }
+    &:hover{
+      background-color: #EAEAEA;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.globallist {
+  &-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  &-list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    .img-box {
+      // .img-box(100%);
+      // cursor: pointer;
+      .playicon {
+        top: 0;
+        bottom: 0 !important;
+        right: 0 !important;
+        left: 0;
+        margin: auto;
+        width: 40px !important;
+        height: 40px !important;
+      }
+    }
+  }
+}

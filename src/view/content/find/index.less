@@ -1,0 +1,48 @@
+.find {
+  margin: auto;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  &-menu {
+    max-width: @default-theme-maxWidth;
+    padding: 0px 30px;
+    .menu {
+      margin: 10px 0;
+      display: flex;
+      margin-bottom: 5px;
+      line-height: 40px;
+      font-size: 16px;
+      width: 425px;
+      justify-content: space-between;
+      &-item {
+        .my-navlink();
+        cursor: pointer;
+        position: relative;
+        &.active {
+          font-size: 18px;
+          font-weight: bold;
+          &::after {
+            content: "";
+            background-color: @default-theme-color;
+            width: 76%;
+            height: 4px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-radius: 30px;
+          }
+        }
+        &:hover {
+          color: @default-theme-hoverTextColor;
+        }
+      }
+    }
+  }
+  &-content {
+    // padding: 10px 30px;
+    flex: 1;
+    overflow: overlay;
+  }
+}

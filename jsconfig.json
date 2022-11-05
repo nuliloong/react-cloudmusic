@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+			"@": ["src"],
+      "@/*": ["src/*"],
+      "@v": ["src/view"],
+      "@v/*": ["src/view/*"],
+      "@c": ["src/components"],
+      "@c/*": ["src/components/*"],
+      "@h": ["src/hooks"],
+      "@h/*": ["src/hooks/*"]
+    }
+  },
+	"exclude": ["node_modules", "dist", "**/*.js"]
+}

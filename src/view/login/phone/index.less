@@ -1,0 +1,147 @@
+.phone {
+  &-ewm {
+    img {
+      height: 52px;
+      cursor: pointer;
+    }
+  }
+  &-banner {
+    .img-box(24.19%);
+    background-color: #fff;
+    img {
+      margin-top: 18px;
+    }
+  }
+  &-inputbox {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 58px;
+    .ant-input-group {
+      display: flex;
+      justify-content: center;
+    }
+    .ant-select-selector {
+      font-size: 12px;
+      box-shadow: none !important;
+      border-color: #d9d9d9 !important;
+      border-bottom-left-radius: 0 !important;
+      border-top-left-radius: 5px !important;
+    }
+    .ant-input {
+      font-size: 14px;
+      // font-weight: bold;
+      // border-left: none;
+      box-shadow: none;
+      border-color: #d9d9d9 !important;
+      color: @default-theme-hoverTextColor;
+      border-bottom-right-radius: 0 !important;
+      border-top-right-radius: 5px !important;
+      &::placeholder {
+        font-size: 12px;
+      }
+    }
+    .ant-input-affix-wrapper {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 5px !important;
+      border-top: none !important;
+      border-color: #d9d9d9 !important;
+      border-right: none !important;
+      box-shadow: none;
+      font-size: 12px;
+      .ant-input-prefix {
+        font-size: 15px;
+        width: 26px;
+        margin: 0;
+        color: @default-theme-grayColor;
+      }
+      .ant-input-suffix {
+        display: none;
+      }
+    }
+    .ant-btn {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 5px !important;
+      border-top: none;
+      border-color: #d9d9d9 !important;
+      font-size: 12px;
+      border-left: none;
+      padding: 0 12px 0 5px;
+      color: @default-theme-grayColor;
+    }
+  }
+  &-btn {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    .auto {
+      margin: 10px 0;
+      width: 260px;
+      color: #adadad;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: @default-theme-grayColor;
+      .message{
+        font-size: 12px;
+        color: #C72E2E;
+        .anticon{
+          margin-right: 5px;
+        }
+      }
+    }
+    .login {
+      display: block;
+      width: 260px;
+      text-align: center;
+      background: #c72e2e;
+      border: none;
+      border-radius: 5px;
+    }
+    .register {
+      cursor: pointer;
+      margin: 8px 0px;
+      text-decoration: underline;
+    }
+    .thirdparty {
+      font-size: 22px;
+      width: 260px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-evenly;
+      .anticon {
+        border: 1px solid @default-theme-border;
+        padding: 7px;
+        border-radius: 50%;
+      }
+      .anticon-wechat {
+        cursor: pointer;
+        color: #2aae67;
+        &:hover {
+          color: #fff;
+          background-color: #2aae67;
+        }
+      }
+      .anticon-qq {
+        cursor: pointer;
+        color: #34a0df;
+        &:hover {
+          color: #fff;
+          background-color: #34a0df;
+        }
+      }
+      .anticon-weibo {
+        cursor: pointer;
+        color: #ea4848;
+        &:hover {
+          color: #fff;
+          background-color: #ea4848;
+        }
+      }
+    }
+    .privacy {
+      font-size: 12px;
+      margin: 30px 0 0;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+.find-collapse {
+  &-tilte {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 10px;
+    color: #3b3b3b;
+    &-text {
+      font-size: 18px;
+      font-weight: bold;
+      padding-right: 5px;
+    }
+    &-icon {
+      font-size: 14px;
+    }
+  }
+  .title-cursor{
+    cursor: pointer;
+    padding-right: 5px;
+    &:hover .find-collapse-tilte-text{
+      color: @default-theme-hoverTextColor;
+    }
+  }
+  // &-content {
+  //   background-color: skyblue;
+  //   height: 500px;
+  // }
+}

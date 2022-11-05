@@ -1,0 +1,39 @@
+{
+  "name": "react-cloudmusic",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "ahooks": "^3.7.2",
+    "antd": "^4.23.6",
+    "axios": "^1.1.3",
+    "classnames": "^2.3.2",
+    "immer": "^9.0.16",
+    "install": "^0.13.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.4",
+    "react-router-dom": "^6.4.2",
+    "redux": "^4.2.0",
+    "redux-promise": "^0.6.0",
+    "redux-thunk": "^2.4.1",
+    "swiper": "^8.4.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
+    "@vitejs/plugin-react": "^2.2.0",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.0",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "vite": "^3.2.0",
+    "vite-plugin-imp": "^2.3.1"
+  }
+}

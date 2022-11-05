@@ -1,0 +1,61 @@
+.personalized_mv {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+  transition: all 3s ease-out;
+  .box {
+    .img-box {
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 5px;
+      .img-box(56.19%);
+      &:hover {
+        .mask-box {
+          top: 0;
+        }
+        .play-count {
+          display: none;
+        }
+      }
+      .mask-box {
+        position: absolute;
+        top: -35px;
+        right: 0;
+        width: 100%;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        padding: 0 5px;
+        color: #fff;
+        font-size: 12px;
+        background-color: #00000061;
+        transition: top 0.3s ease-out;
+      }
+    }
+    &-name {
+      .overflow(1);
+      cursor: pointer;
+      margin-top: 5px;
+      &:hover {
+        color: @default-theme-hoverTextColor;
+      }
+    }
+    &-artist {
+      font-size: 12px;
+      cursor: pointer;
+      color: @default-theme-grayColor;
+      &:hover {
+        color: @default-theme-hoverTextColor;
+      }
+    }
+  }
+  .box:last-child {
+    display: none;
+  }
+}
+.width1000px {
+  grid-template-columns: repeat(4, 1fr);
+  .box:last-child {
+    display: block;
+  }
+}

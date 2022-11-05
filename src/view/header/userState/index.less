@@ -1,0 +1,61 @@
+.userstate {
+  width: 250px;
+  .dynamic {
+    display: flex;
+    justify-content: space-around;
+    &-item {
+      width: 50px;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 12px;
+      color: @default-theme-textColor;
+      .count {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      &:hover {
+        color: @default-theme-hoverTextColor;
+      }
+    }
+  }
+  .signin {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    .ant-btn {
+      min-width: 80px;
+      border-radius: 62px;
+    }
+  }
+  .linkbox {
+    border-top: 1px solid @default-theme-border;
+    user-select: none;
+    &-item {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      cursor: pointer;
+      .icon {
+        font-size: 20px;
+        padding: 0 8px 0 5px;
+        color: @default-theme-textColor;
+      }
+      .title {
+        flex: 1;
+        font-size: 14px;
+      }
+      .state {
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        color: @default-theme-grayColor;
+      }
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+}

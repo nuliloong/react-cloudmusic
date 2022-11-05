@@ -1,0 +1,57 @@
+/* Global definition less */
+@primary-color: #ec4141;
+
+@default-theme-textColor: #454545;
+@default-theme-hoverTextColor: #000000;
+@default-theme-color: #ec4141;
+@default-theme-bgcolor: #ffffff;
+@default-theme-headerTextColor: #fff;
+@default-theme-border: #e1e1e1;
+@default-theme-listBgColor: #f9f9f9;
+@default-theme-listBgColorHover: #f0f1f2;
+@default-theme-grayColor: #adadad;
+@default-theme-maxWidth: 1160px;
+
+.overflow(@line:1) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: @line;
+  -webkit-box-orient: vertical;
+  text-overflow: -o-ellipsis-lastline;
+  text-overflow: ellipsis;
+}
+
+.img-box(@proportion,@bgColor:#eee) {
+  position: relative;
+  padding-top: @proportion;
+  background-color: @bgColor;
+  border-radius: 5px;
+  .img {
+    width: 100%;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: @bgColor;
+  }
+}
+.my-img(@proportion,@bgColor:#eee) {
+  position: relative;
+  padding-top: @proportion;
+  background-color: @bgColor;
+  border-radius: 5px;
+  img {
+    width: 100%;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: @bgColor;
+  }
+}
+.my-navlink() {
+  color: @default-theme-textColor;
+  display: inline-block;
+}
