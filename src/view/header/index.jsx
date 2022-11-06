@@ -84,7 +84,7 @@ export default function Header() {
     <div className="header">
       <div className="logo">
         <img className="logo-img" src={logo} alt="logo" />
-        <span className="logo-title">网易云音乐</span>
+        <span className="logo-title">镜子云音乐</span>
       </div>
       <div className="control">
         <div className="control-icon" onClick={routerBack}>

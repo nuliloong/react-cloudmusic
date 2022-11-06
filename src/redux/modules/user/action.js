@@ -9,11 +9,11 @@ import { SET_USER_ID, SET_LAYOUT_SIDER_WIDTH, CHANGE_LOGIN_SHOW, SET_USER_INFO }
 export const setLayoutSiderWidth = data => ({ type: SET_LAYOUT_SIDER_WIDTH, data })
 export const changeLoginShow = data => ({ type: CHANGE_LOGIN_SHOW, data })
 
-// 保存用户ID
+/**保存用户ID */
 export const setUserId = data => ({ type: SET_USER_ID, data })
-// 保存用户信息
+/**保存用户信息 */
 export const setAccountInfo = (data) => ({ type: SET_USER_INFO, data })
-// 获取账号信息
+/**获取账号信息 */
 export const getAccountInfo = async () => {
   const [err1, res1] = await to(getUserAccount())
   if (err1) {
@@ -31,12 +31,12 @@ export const getAccountInfo = async () => {
     dispatch(setUserId(res2.profile.userId))
   }
 }
-// 退出登录
+/**退出登录 */
 export const loginOut = () => (dispatch) => {
   dispatch(setAccountInfo({}))
   dispatch(setUserId(''))
 }
-// 刷新登录
+/**刷新登录 */
 export const refreshUserInfo = async () => {
   return (dispatch) => {
     dispatch(getAccountInfo())

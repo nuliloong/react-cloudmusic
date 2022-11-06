@@ -16,7 +16,7 @@ export const searchRoute = (path, routes) => {
 	return result;
 };
 
-// 封装promise
+/**封装promise */
 export const to = (promise, errorExt) => {
 	return promise
 		.then((res) => [null, res])
@@ -30,7 +30,7 @@ export const to = (promise, errorExt) => {
 }
 
 
-// 节流
+/**节流 */
 export function throttle(fn, wait = 1000) {
 	let timer
 	return function () {
@@ -42,7 +42,7 @@ export function throttle(fn, wait = 1000) {
 		}
 	}
 }
-// 匹配替换http为https
+/**匹配替换http为https */
 export function httpToHttps(path) {
 	if (!path) return ''
 	let reg = /^(https?:\/\/)([0-9a-z.]+)(:[0-9]+)?([/0-9a-z.]+)?(\?[0-9a-z&=]+)?(#[0-9-a-z]+)?/i
@@ -50,14 +50,14 @@ export function httpToHttps(path) {
 	return path
 }
 
-// 检测是全屏
+/**检测是否全屏 */
 export function isFullscreen() {
 	var fullscreenEle = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
 	return fullscreenEle;
 }
 /**页面最大化 */
 export function requestFullScreen() {
-	let docElm = document.getElementById('root')
+	let docElm = document.body
 	// const docElm = document.documentElement;
 	if (docElm.requestFullscreen) {
 		docElm.requestFullscreen();
@@ -84,7 +84,7 @@ export function exitFullscreen() {
 	}
 }
 
-// 时长格式化
+/**时长格式化 */
 export function formatDuration(time) {
 	// 如果超过了100000 基本都是毫秒为单位的了 先转成秒的
 	time = parseInt(time)

@@ -1,44 +1,19 @@
-import { getUserAccount, getUserDetail } from "@/api/modules/login";
-import { to } from "@/utils/util";
-import { message } from 'antd';
-import { SET_USER_ID, SET_LAYOUT_SIDER_WIDTH, CHANGE_LOGIN_SHOW, SET_USER_INFO } from "../../constant";
+
+import {
+  SET_CURRENT_SONG_URL,
+  CHANGE_PLAY_STATE,
+  SAVE_SONG_DETAIL,
+  ADD_PLAYINGLIST,
+} from "../../constant";
 // import store from "./store.js";
 
+/**修改当前播放音乐 */
+export const setSongUrl = data => ({ type: SET_CURRENT_SONG_URL, data })
+/**修改播放状态 */
+export const setPlayState = data => ({ type: CHANGE_PLAY_STATE, data })
+/**保存当前播放歌曲信息 */
+export const saveSongDetail = data => ({ type: SAVE_SONG_DETAIL, data })
+/**添加到播放列表 */
+export const addPlayinglist = data => ({ type: ADD_PLAYINGLIST, data })
 
 
-export const setLayoutSiderWidth = data => ({ type: SET_LAYOUT_SIDER_WIDTH, data })
-export const changeLoginShow = data => ({ type: CHANGE_LOGIN_SHOW, data })
-
-// 保存用户ID
-export const setUserId = data => ({ type: SET_USER_ID, data })
-// 保存用户信息
-export const setAccountInfo = (data) => ({ type: SET_USER_INFO, data })
-// 获取账号信息
-export const getAccountInfo = async () => {
-  const [err1, res1] = await to(getUserAccount())
-  if (err1) {
-    message.error('获取账号信息失败');
-    return { type: '' }
-  }
-  const [err2, res2] = await to(getUserDetail(res1.profile.userId))
-  if (err2) {
-    message.error('获取用户信息失败');
-    return { type: '' }
-  }
-  res2.profile = Object.assign(res1.profile, res2.profile)
-  return (dispatch) => {
-    dispatch(setAccountInfo(res2))
-    dispatch(setUserId(res2.profile.userId))
-  }
-}
-// 退出登录
-export const loginOut = () => (dispatch) => {
-  dispatch(setAccountInfo({}))
-  dispatch(setUserId(''))
-}
-// 刷新登录
-export const refreshUserInfo = async () => {
-  return (dispatch) => {
-    dispatch(getAccountInfo())
-  }
-}

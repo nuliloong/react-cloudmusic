@@ -4,6 +4,7 @@ import "./index.less"
 import {
   DownOutlined,
   FolderAddOutlined,
+  HeartFilled,
   HeartOutlined,
   LoginOutlined,
   LogoutOutlined,
@@ -12,9 +13,22 @@ import {
 import { Drawer } from "antd"
 import { useState } from "react"
 import classNames from "classnames"
+import { useSelector } from "react-redux"
+import { memo } from "react"
+import { to } from "@/utils/util"
+import { likeSong } from "@/api/modules/play"
+import { message } from "antd"
 
-export default function Musicinfo() {
+function Musicinfo() {
   const [open, setOpen] = useState(false)
+  const [isLike, setLike] = useState(false)
+  const { al, ar, id, userId } = useSelector(({ play, user }) => ({
+    al: play.currentSongDetail?.al || {},
+    ar: play.currentSongDetail?.ar || [],
+    id: play.currentSongDetail?.id,
+    userId: user.userId,
+  }))
+  // const { al, ar, id } = currentSongDetail
 
   const onClose = () => {
     setOpen(false)
@@ -22,15 +36,32 @@ export default function Musicinfo() {
   const changeDrawer = () => {
     setOpen(!open)
   }
+  const changeLike = async () => {
+    if (!userId) {
+      message.warn("登录后才能收藏")
+      return
+    }
+    const [err, res] = await to(likeSong(id, !isLike))
+    if (res) {
+      setLike(!isLike)
+    }
+  }
+  const LikeNode = () => {
+    if (isLike) {
+      return <HeartFilled title="取消喜欢" className="unlike" onClick={changeLike} />
+    }
+    return <HeartOutlined title="喜欢" className="like" onClick={changeLike} />
+  }
+
   return (
     <>
       <div className={classNames("music-footer", { open })}>
         <div className="details">
           <div className="normal">
-            <DownOutlined  onClick={changeDrawer}/>
+            <DownOutlined onClick={changeDrawer} />
           </div>
-          <div className="love">
-            <HeartOutlined title="喜欢" />
+          <div className="details-state">
+            <LikeNode />
             <FolderAddOutlined />
             <LoginOutlined rotate="90" />
             <LogoutOutlined rotate="-45" />
@@ -41,7 +72,7 @@ export default function Musicinfo() {
             <ImgBox
               loading="lazy"
               size="80y80"
-              src="https://p2.music.126.net/EsddegOBGounGgPZSluY7w==/109951168029935922.jpg?param=80y80"
+              src={al?.picUrl || ""}
               className="img-box"
               width="100%"
               height="100%"
@@ -52,15 +83,15 @@ export default function Musicinfo() {
             </ImgBox>
           </div>
           <div className="musicinfo-name">
-            <div className="musicname" title="I WANNA BE YOUR SLAVE">
-              I WANNA BE YOUR SLAVE
+            <div className="musicname" title={al?.name || ""}>
+              {al?.name || ""}
             </div>
             <div className="artist">
-              <span className="name">Måneskin</span>
+              <span className="name">{ar[0]?.name || ""}</span>
             </div>
           </div>
-          <div className="musicinfo-like">
-            <HeartOutlined title="喜欢" />
+          <div className="musicinfo-state">
+            <LikeNode />
           </div>
         </div>
       </div>
@@ -81,3 +112,4 @@ export default function Musicinfo() {
     </>
   )
 }
+export default memo(Musicinfo)

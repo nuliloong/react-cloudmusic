@@ -1,7 +1,20 @@
 .music-footer {
   flex: 1;
-  transition: transform .7s ease-in-out;
+  transition: transform 0.7s ease-in-out;
   transform: translateY(-100%);
+  .footer-like() {
+    .like {
+      &:hover {
+        color: @default-theme-color;
+      }
+    }
+    .unlike {
+      color: @default-theme-color;
+      &:hover {
+        color: @default-theme-color;
+      }
+    }
+  }
   .musicinfo {
     display: flex;
     height: 100%;
@@ -40,11 +53,10 @@
       }
     }
     &-name {
-      width: 150px;
+      max-width: 150px;
       display: flex;
       flex-flow: column;
       justify-content: center;
-      // padding-left: 10px;
       overflow: hidden;
       .musicname {
         font-size: 16px;
@@ -58,7 +70,7 @@
         }
       }
     }
-    &-like {
+    &-state {
       font-size: 20px;
       margin-left: 10px;
       margin-top: 11px;
@@ -69,6 +81,7 @@
           color: @default-theme-textColor;
         }
       }
+      .footer-like();
     }
   }
   .details {
@@ -82,20 +95,21 @@
       align-items: center;
       justify-content: center;
       .anticon {
-      cursor: pointer;
+        cursor: pointer;
         padding: 15px;
       }
     }
-    .love {
+    &-state {
       display: flex;
       align-items: center;
       .anticon {
-      cursor: pointer;
+        cursor: pointer;
         border: 1px solid @default-theme-border;
         padding: 10px;
         border-radius: 50%;
         margin-right: 10px;
       }
+      .footer-like();
     }
   }
   &.open {
