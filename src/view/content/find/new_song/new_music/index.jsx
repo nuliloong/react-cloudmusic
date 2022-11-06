@@ -39,6 +39,7 @@ function NewMusic() {
     }
     return nowSongInfo
   }
+  // 播放音乐
   const playMusic = async (music) => {
     const [err, res] = await to(checkMusic(music.id))
     if (res.success) {
@@ -53,13 +54,14 @@ function NewMusic() {
     }
     message.warning(res?.message || "暂时无法播放，换首试试")
   }
+  // 双击处理
   let timer = null
   const dbClick = (record) => {
     clearTimeout(timer)
     timer = setTimeout(() => {
       playMusic(record)
       clearTimeout(timer)
-    }, 500)
+    }, 350)
   }
   // useEffect(() => {
   //   return () => clearTimeout(timer)
@@ -72,6 +74,7 @@ function NewMusic() {
     { type: 16, name: "韩国" },
     { type: 8, name: "日本" },
   ]
+  // 表格配置项
   const columns = [
     {
       title: "序号",

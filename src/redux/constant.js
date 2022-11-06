@@ -19,3 +19,7 @@ export const CHANGE_PLAY_STATE = 'changePlayState'
 export const SAVE_SONG_DETAIL = 'saveSongDetail'
 /**添加到播放列表 */
 export const ADD_PLAYINGLIST = 'addPlayinglist'
+/**替换或清空播放列表 */
+export const CLEAR_PLAY_LIST = 'clearPlayList'
+/**删除播放列表单个 */
+export const DELETE_SONG = 'deleteSong'

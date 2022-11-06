@@ -3,6 +3,8 @@ import {
   CHANGE_PLAY_STATE,
   SAVE_SONG_DETAIL,
   ADD_PLAYINGLIST,
+  CLEAR_PLAY_LIST,
+  DELETE_SONG
 } from "../../constant";
 import produce from 'immer';
 
@@ -35,8 +37,8 @@ const userReducer = produce((draft, { type, data }) => {
   // 操作数据无需深复制，提升性能
   switch (type) {
     case SET_CURRENT_SONG_URL:
-      draft.currentSongUrl = data
-      localStorage.setItem('play_currentSongUrl', data)
+      draft.currentSongUrl = data || ''
+      localStorage.setItem('play_currentSongUrl', draft.currentSongUrl)
       break;
     case CHANGE_PLAY_STATE:
       draft.isPlaying = data
@@ -47,9 +49,17 @@ const userReducer = produce((draft, { type, data }) => {
       draft.playingList.unshift(data)
       localStorage.setItem('play_playingList', JSON.stringify(draft.playingList))
       break;
+    case CLEAR_PLAY_LIST:
+      draft.playingList = data || []
+      localStorage.setItem('play_playingList', JSON.stringify(draft.playingList))
+      break;
+    case DELETE_SONG:
+      draft.playingList = draft.playingList.filter(i => i.id !== data)
+      localStorage.setItem('play_playingList', JSON.stringify(draft.playingList))
+      break;
     case SAVE_SONG_DETAIL:
-      draft.currentSongDetail = data
-      localStorage.setItem("play_currentSongDetail", JSON.stringify(data))
+      draft.currentSongDetail = data || {}
+      localStorage.setItem("play_currentSongDetail", JSON.stringify(draft.currentSongDetail))
       break;
     default:
       return draft

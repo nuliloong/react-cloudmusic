@@ -12,27 +12,27 @@ export default class Singer extends React.Component {
     areaTags: {
       category: "语种",
       list: [
-        { area: -1, name: "全部" },
-        { area: 7, name: "华语" },
-        { area: 96, name: "欧美" },
-        { area: 8, name: "日本" },
-        { area: 16, name: "韩国" },
-        { area: 0, name: "其它" },
+        { area: "-1", name: "全部" },
+        { area: "7", name: "华语" },
+        { area: "96", name: "欧美" },
+        { area: "8", name: "日本" },
+        { area: "16", name: "韩国" },
+        { area: "0", name: "其它" },
       ],
     },
     typeTags: {
       category: "分类",
       list: [
-        { type: -1, name: "全部" },
-        { type: 1, name: "男歌手" },
-        { type: 2, name: "女歌手" },
-        { type: 3, name: "乐队" },
+        { type: "-1", name: "全部" },
+        { type: "1", name: "男歌手" },
+        { type: "2", name: "女歌手" },
+        { type: "3", name: "乐队" },
       ],
     },
     initialTags: {
       category: "筛选",
       list: [
-        { initial: -1, name: "热门" },
+        { initial: "-1", name: "热门" },
         { initial: "a", name: "A" },
         { initial: "b", name: "B" },
         { initial: "c", name: "C" },
@@ -59,12 +59,12 @@ export default class Singer extends React.Component {
         { initial: "x", name: "X" },
         { initial: "y", name: "Y" },
         { initial: "z", name: "Z" },
-        { initial: 0, name: "#" },
+        { initial: "0", name: "#" },
       ],
     },
-    area: -1,
-    type: -1,
-    initial: -1,
+    area: "-1",
+    type: "-1",
+    initial: "-1",
     artistList: [],
     pageIndex: 1,
     isMore: true,
@@ -74,7 +74,6 @@ export default class Singer extends React.Component {
 
   // // 获取歌手名单
   getArtistList = async (init) => {
-    this.setState({ isTypeLoading: true })
     const { pageIndex, area, type, initial, artistList } = this.state
     const [err, res] = await to(
       getArtist({ area, type, initial, limit: 50, offset: (pageIndex - 1) * 50 })
@@ -122,6 +121,7 @@ export default class Singer extends React.Component {
   componentDidMount() {
     // 监听滚动条事件
     this.scrollbox.addEventListener("scroll", this.scrollChange)
+    this.setState({ isTypeLoading: true })
     // 初始化页面数据
     this.getArtistList()
   }

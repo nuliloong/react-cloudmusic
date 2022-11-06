@@ -1,5 +1,5 @@
 import ImgBox from "@/components/ImgBox"
-import React from "react"
+import React,{ memo,useState } from "react"
 import "./index.less"
 import {
   DownOutlined,
@@ -10,14 +10,12 @@ import {
   LogoutOutlined,
   UpOutlined,
 } from "@ant-design/icons"
-import { Drawer } from "antd"
-import { useState } from "react"
+import { Drawer, message } from "antd"
 import classNames from "classnames"
 import { useSelector } from "react-redux"
-import { memo } from "react"
 import { to } from "@/utils/util"
 import { likeSong } from "@/api/modules/play"
-import { message } from "antd"
+import logo from "@/assets/images/logo.svg"
 
 function Musicinfo() {
   const [open, setOpen] = useState(false)
@@ -28,7 +26,6 @@ function Musicinfo() {
     id: play.currentSongDetail?.id,
     userId: user.userId,
   }))
-  // const { al, ar, id } = currentSongDetail
 
   const onClose = () => {
     setOpen(false)
@@ -46,6 +43,19 @@ function Musicinfo() {
       setLike(!isLike)
     }
   }
+  // 如果当前没有音乐
+  if (!id) {
+    return (
+      <div className="music-footer open">
+        <div className="musicinfo">
+          <div className="musicinfo-left">
+            <img src={logo} className="img-box img-empty" width="100%" height="100%" />
+          </div>
+          <div className="musicinfo-name">暂无音乐</div>
+        </div>
+      </div>
+    )
+  }
   const LikeNode = () => {
     if (isLike) {
       return <HeartFilled title="取消喜欢" className="unlike" onClick={changeLike} />
@@ -58,7 +68,7 @@ function Musicinfo() {
       <div className={classNames("music-footer", { open })}>
         <div className="details">
           <div className="normal">
-            <DownOutlined onClick={changeDrawer} />
+            <DownOutlined title="收起音乐详情" onClick={changeDrawer} />
           </div>
           <div className="details-state">
             <LikeNode />
@@ -99,10 +109,12 @@ function Musicinfo() {
         className="xxxxxxxxxx"
         placement="bottom"
         closable={false}
+        mask={false}
         maskClosable={false}
         height="100vh"
         open={open}
         key="bottom"
+        getContainer={document.querySelector('.ant-layout-has-sider')}
       >
         <button onClick={onClose}>xxxxx</button>
         <p>Some contents...</p>
