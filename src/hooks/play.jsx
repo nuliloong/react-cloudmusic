@@ -16,7 +16,7 @@ export const getSongInfo = (song) => {
   nowSongInfo.id = song.id //歌曲id
   nowSongInfo.name = song.name //歌曲名
   nowSongInfo.dt = song.duration //歌曲时长
-  nowSongInfo.al.picUrl = song.album.picUrl //专辑封面
+  nowSongInfo.al.picUrl = song.album?.picUrl||'' //专辑封面
   nowSongInfo.al.name = song.album.name //专辑名
   nowSongInfo.al.id = song.album.id //专辑id
   nowSongInfo.ar[0].name = song.artists[0].name //歌手名

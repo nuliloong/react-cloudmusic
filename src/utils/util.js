@@ -43,7 +43,7 @@ export function throttle(fn, wait = 1000) {
 	}
 }
 /**匹配替换http为https */
-export function httpToHttps(path) {
+export const httpToHttps = (path) => {
 	if (!path) return ''
 	let reg = /^(https?:\/\/)([0-9a-z.]+)(:[0-9]+)?([/0-9a-z.]+)?(\?[0-9a-z&=]+)?(#[0-9-a-z]+)?/i
 	path = path.replace(reg, "https://$2$3$4$5$6");
@@ -51,12 +51,12 @@ export function httpToHttps(path) {
 }
 
 /**检测是否全屏 */
-export function isFullscreen() {
+export const isFullscreen = () => {
 	var fullscreenEle = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
 	return fullscreenEle;
 }
 /**页面最大化 */
-export function requestFullScreen() {
+export const requestFullScreen = () => {
 	let docElm = document.body
 	// const docElm = document.documentElement;
 	if (docElm.requestFullscreen) {
@@ -70,7 +70,7 @@ export function requestFullScreen() {
 	}
 }
 /**退出最大化 */
-export function exitFullscreen() {
+export const exitFullscreen = () => {
 	const de = window.parent.document;
 
 	if (de.exitFullscreen) {
@@ -85,7 +85,7 @@ export function exitFullscreen() {
 }
 
 /**时长格式化 */
-export function formatDuration(time) {
+export const formatDuration = (time) => {
 	// 如果超过了100000 基本都是毫秒为单位的了 先转成秒的
 	time = parseInt(time)
 	if (time > 10000) {
@@ -105,7 +105,7 @@ export function formatDuration(time) {
 // 	if (val < 100000) return val
 // 	return val.toString().slice(0, -4) + '万'
 // }
-export function formatCount(num) {
+export const formatCount = (num) => {
 	if (num > 100000000) {
 		num = (num / 100000000).toFixed(2);
 		return num + "亿"
@@ -114,4 +114,38 @@ export function formatCount(num) {
 		num = (num / 10000).toFixed(1);
 		return num + "万";
 	} else return num;
+}
+/**判断数字不为Infinity和NaN */
+export const isNumber = (value) => {
+	return typeof value === 'number' && isFinite(value);
+}
+
+/**排除当前的其他随机数 */
+export const randomOther = (index, max) => {
+	let random = Math.floor(Math.random() * max)
+	return random !== index ? random : randomOther(index, max)
+}
+
+/* 格式化日期 */
+export const formatDate = (date, fmt) => {
+	if (!date) return
+	const _date = new Date(date)
+	var o = {
+		"M+": _date.getMonth() + 1,                 //月份 
+		"d+": _date.getDate(),                    //日 
+		"h+": _date.getHours(),                   //小时 
+		"m+": _date.getMinutes(),                 //分 
+		"s+": _date.getSeconds(),                 //秒 
+		"q+": Math.floor((_date.getMonth() + 3) / 3), //季度 
+		"S": _date.getMilliseconds()             //毫秒 
+	};
+	if (/(y+)/.test(fmt)) {
+		fmt = fmt.replace(RegExp.$1, (_date.getFullYear() + "").substr(4 - RegExp.$1.length));
+	}
+	for (var k in o) {
+		if (new RegExp("(" + k + ")").test(fmt)) {
+			fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+		}
+	}
+	return fmt;
 }

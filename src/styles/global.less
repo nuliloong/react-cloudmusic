@@ -10,6 +10,7 @@
 @default-theme-listBgColorHover: #f0f1f2;
 @default-theme-grayColor: #adadad;
 @default-theme-maxWidth: 1160px;
+@default-theme-linkColor: #00b5ff;
 
 .overflow(@line:1) {
   overflow: hidden;
@@ -35,22 +36,28 @@
     background-color: @bgColor;
   }
 }
-.my-img(@proportion,@bgColor:#eee) {
-  position: relative;
-  padding-top: @proportion;
-  background-color: @bgColor;
-  border-radius: 5px;
-  img {
-    width: 100%;
-    border-radius: 5px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    background-color: @bgColor;
-  }
-}
 .my-navlink() {
   color: @default-theme-textColor;
   display: inline-block;
+}
+
+.my-table() {
+  .ant-table-row {
+    &:nth-child(even) {
+      background-color: @default-theme-listBgColor;
+    }
+    &:hover {
+      .ant-table-cell {
+        background-color: @default-theme-listBgColorHover !important;
+      }
+      .duration-col {
+        color: #000;
+      }
+    }
+  }
+  .ant-table-cell {
+    border: none;
+    padding: 8px 0 8px 5px;
+    font-size: 12px;
+  }
 }

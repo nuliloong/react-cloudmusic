@@ -7,12 +7,15 @@ import "./index.less"
 import calendar from "@/assets/images/calendar.svg"
 import play from "@/assets/images/play.svg"
 import PlaylistItem from "@/components/PlaylistItem"
+import { message } from "antd"
+import { useNavigate } from "react-router-dom"
 
 const day = new Date().getDate()
 
 function Recommend(props) {
   const { userId } = props
   const [songList, setsongList] = useState([])
+  const navigate = useNavigate()
   // 获取歌单
   const getSongList = async () => {
     const [err, res] = await to(getRecommendSongList(9))
@@ -20,11 +23,21 @@ function Recommend(props) {
   }
   // 每日推荐
   const ererydayClick = () => {
-    if (!userId) return
+    if (!userId) {
+      message.warning("该功能需要登录")
+      return
+    }
+    navigate("/find/daily_recommended")
   }
   useEffect(() => {
     getSongList()
   }, [])
+  const playAll = (e) => {
+    // e.stopPropagation()
+  }
+  const songlistClick = (item) => {
+    navigate("/find/songlistdetail?id="+item.id)
+  }
   return (
     <div className="list-box">
       <div className="everyday" onClick={ererydayClick}>
@@ -33,7 +46,7 @@ function Recommend(props) {
             <img src={calendar} />
             <span>{day}</span>
           </div>
-          <div className="everyday-img-playicon">
+          <div className="everyday-img-playicon" onClick={playAll}>
             <img src={play} />
           </div>
         </div>
@@ -47,6 +60,9 @@ function Recommend(props) {
           src={item.picUrl}
           name={item.name}
           playCount={item.playCount}
+          clickImg={() => songlistClick(item)}
+          clickIcon={() => songlistClick(item)}
+          clickName={() => songlistClick(item)}
         />
       ))}
     </div>

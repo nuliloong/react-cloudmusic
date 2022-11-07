@@ -11,6 +11,7 @@ import { message } from "antd"
 import { useDispatch } from "react-redux"
 import {
   addPlayinglist,
+  clearPlayList,
   saveSongDetail,
   setPlayState,
   setSongUrl,
@@ -29,7 +30,7 @@ function NewMusic() {
     nowSongInfo.id = song.id //歌曲id
     nowSongInfo.name = song.name //歌曲名
     nowSongInfo.dt = song.duration //歌曲时长
-    nowSongInfo.al.picUrl = song.album.picUrl //专辑封面
+    nowSongInfo.al.picUrl = song.album?.picUrl || "" //专辑封面
     nowSongInfo.al.name = song.album.name //专辑名
     nowSongInfo.al.id = song.album.id //专辑id
     nowSongInfo.ar[0].name = song.artists[0].name //歌手名
@@ -49,10 +50,23 @@ function NewMusic() {
         dispatch(setPlayState(true)) // 更新播放状态
         dispatch(saveSongDetail(getSongInfo(music))) // 保存当前歌曲详情
         dispatch(addPlayinglist(getSongInfo(music))) // 添加到播放列表
+        return true
       }
       return
     }
     message.warning(res?.message || "暂时无法播放，换首试试")
+    return
+  }
+  let flag = 0
+  const playAll = async () => {
+    const result = await playMusic(songList[flag])
+    if (!result) {
+      flag++
+      playAll()
+      return
+    }
+    const AllList = songList.map((item) => getSongInfo(item))
+    dispatch(clearPlayList(AllList))
   }
   // 双击处理
   let timer = null
@@ -161,7 +175,7 @@ function NewMusic() {
           ))}
         </div>
         <div className={classNames("newsong-play", { hiden: isLoading })}>
-          <button className="backr">
+          <button className="backr" onClick={playAll}>
             <PlayCircleOutlined />
             播放全部
           </button>

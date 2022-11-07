@@ -3,21 +3,21 @@ import { get, post } from '../axios'
 // 接口文档
 // https://binaryify.github.io/NeteaseCloudMusicApi/#/
 
-// 获取key
+/**获取key */
 export const getQrKey = () => get('/login/qr/key', { timerstamp: +new Date() })
-// 获取二维码
+/**获取二维码 */
 export const getQrBase = (key) => get('/login/qr/create', { key, qrimg: true, timerstamp: +new Date() })
-// 获取二维码状态
+/**获取二维码状态 */
 export const getQrState = (key) => get('/login/qr/check', { key, timerstamp: +new Date() })
-// 刷新登录
-// 说明 : 调用此接口 , 可刷新登录状态,返回内容包含新的cookie(不支持刷新二维码登录的cookie)
-// 调用例子 : /login/refresh
+/**
+ * 刷新登录
+ * 说明 : 调用此接口 , 可刷新登录状态,返回内容包含新的cookie(不支持刷新二维码登录的cookie)
+ * 调用例子 : /login/refresh
+ */
 export const getUserInfo = () => get('/login/refresh')
 
-
-
 // 手机登录
-/*
+/**
   必选参数：
   phone: 手机号码
   password: 密码
@@ -29,13 +29,13 @@ export const getUserInfo = () => get('/login/refresh')
 export const getPhoneLogin = ({ phone, password }) => get('/login/cellphone', { phone, password })
 
 
-// 获取账号信息
+/**获取账号信息 */
 export const getUserAccount = () => get('/user/account')
-// 获取用户详情
+/**获取用户详情 */
 export const getUserDetail = (uid) => get('/user/detail', { uid })
 
 
-// 签到
+/**签到 */
 export const dailySignin = () => get('/daily_signin', { type:1 })
 
 

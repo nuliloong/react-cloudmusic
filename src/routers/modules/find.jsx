@@ -16,6 +16,22 @@ const routers = [
     },
     children: [
       {
+        path: "/find/songlistdetail",
+        element: lazyLoad(React.lazy(() => import("@v/content/find/songlist_detail"))),
+        meta: {
+          requiresAuth: false,
+          title: "发现音乐-歌单详情",
+        },
+      },
+      {
+        path: "/find/daily_recommended",
+        element: lazyLoad(React.lazy(() => import("@v/content/find/daily_recommended"))),
+        meta: {
+          requiresAuth: true,
+          title: "每日推荐",
+        },
+      },
+      {
         path: "/find",
         element: <FindLayout />,
         meta: {
@@ -71,7 +87,7 @@ const routers = [
               { path: "/find/new_song", element: <Navigate to="/find/new_song/top_music" /> }, // 默认一级路由
               {
                 path: "/find/new_song/top_music",
-                element: <FindNew_song/>,
+                element: <FindNew_song />,
                 meta: {
                   requiresAuth: false,
                   title: "发现音乐-最新音乐",

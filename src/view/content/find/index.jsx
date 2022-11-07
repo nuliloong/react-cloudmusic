@@ -4,6 +4,7 @@ import "./index.less"
 import { NavLink } from "react-router-dom"
 
 export default function FindLayout() {
+  console.log('1 :>> ', 1);
   const menuList = [
     { key: "findml-1", title: "个性推荐", path: "/find/personality" },
     { key: "findml-2", title: "专属定制", path: "/find/custom" },

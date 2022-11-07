@@ -72,9 +72,9 @@ function Musicinfo() {
           </div>
           <div className="details-state">
             <LikeNode />
-            <FolderAddOutlined />
-            <LoginOutlined rotate="90" />
-            <LogoutOutlined rotate="-45" />
+            <FolderAddOutlined title="收藏"/>
+            <LoginOutlined rotate="90" title="下载"/>
+            <LogoutOutlined rotate="-45" title="分享" />
           </div>
         </div>
         <div className="musicinfo">

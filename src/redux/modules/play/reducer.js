@@ -19,14 +19,14 @@ const prevState = {
   currentSongDetail: JSON.parse(localStorage.getItem('play_currentSongDetail') || '{}'),
   //正在播放列表
   playingList: JSON.parse(localStorage.getItem('play_playingList') || '[]'),
+  // 历史播放列表
+  // historyPlay: JSON.parse(localStorage.getItem('play_historyPlay') || '[]'),
   // // 是否显示当前歌曲详情页
   // isShowSongDetail: false,
   // // 是否显示悬浮歌词
   // showFloatLyric: false,
   // // 当前播放歌曲歌词
   // currentLyric: [],
-  // // 历史播放列表
-  // historyPlay: localStorage.getItem("historyPlay") ? JSON.parse(localStorage.getItem("historyPlay")) : [],
   // // 当前歌曲播放的实时秒数
   // currentSecond: localStorage.getItem("currentSecond") ? JSON.parse(localStorage.getItem("currentSecond")) : 0,
   // //当前歌曲播放的歌词行
@@ -52,6 +52,11 @@ const userReducer = produce((draft, { type, data }) => {
     case CLEAR_PLAY_LIST:
       draft.playingList = data || []
       localStorage.setItem('play_playingList', JSON.stringify(draft.playingList))
+      // // 清空历史列表
+      // if (!draft.playingList.length) {
+      //   draft.historyPlay = []
+      //   localStorage.setItem('play_historyPlay', JSON.stringify([]))
+      // }
       break;
     case DELETE_SONG:
       draft.playingList = draft.playingList.filter(i => i.id !== data)
@@ -60,6 +65,13 @@ const userReducer = produce((draft, { type, data }) => {
     case SAVE_SONG_DETAIL:
       draft.currentSongDetail = data || {}
       localStorage.setItem("play_currentSongDetail", JSON.stringify(draft.currentSongDetail))
+      // // 添加到历史列表
+      // if (!!data?.id) {
+      //   draft.historyPlay.push(data)
+      //   localStorage.setItem('play_historyPlay', JSON.stringify(draft.historyPlay))
+      //   // 只保存100个
+      //   draft.historyPlay.length > 100 && draft.historyPlay.shift()
+      // }
       break;
     default:
       return draft

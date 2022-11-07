@@ -17,6 +17,7 @@ import { Table, message } from "antd"
 import { formatDuration, to } from "@/utils/util"
 import { useDispatch, useSelector } from "react-redux"
 import "./index.less"
+import MyButton from "@/components/MyButton"
 
 function PlayList() {
   const dispatch = useDispatch()
@@ -148,13 +149,12 @@ function PlayList() {
         <div className="operation">
           <div className="operation-count">总{playingList.length}首</div>
           <div className="operation-btn">
-            <button className="btn star">
-              <FolderAddOutlined />
+            <MyButton className="btn star" icon={<FolderAddOutlined />}>
               收藏全部
-            </button>
-            <button className="btn clear" onClick={clearList}>
+            </MyButton>
+            <MyButton className="btn clear" onClick={clearList}>
               清空列表
-            </button>
+            </MyButton>
           </div>
         </div>
       </div>

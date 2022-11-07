@@ -68,38 +68,6 @@ export function useRefCallback(fn, dependencies) {
   }, [ref])
 }
 
-export function useLazyImg(dom) {
-  const { pathname } = useLocation()
-  const isInClient = (item) => {
-    let { top, bottom } = item.getBoundingClientRect()
-    let bodyHeight = document.body.offsetHeight
-    if ((top >= 0 && top < bodyHeight + bodyHeight / 2) || (bottom >= 0 && bottom < bodyHeight + bodyHeight / 2)) {
-      return true
-    } else {
-      return false
-    }
-  }
-  const checkImages = (e) => {
-    let imgs = document.querySelectorAll("img")
-    imgs.forEach(item => {
-      if (isInClient(item) && item.src === "") {
-        if (item.getAttribute("src")) {
-          item.src = item.getAttribute("src")
-        }
-      }
-    })
-  }
-  useEffect(() => {
-    const _target = dom.current
-    setTimeout(() => {
-      checkImages()
-    }, 1)
-    _target.addEventListener("scroll", checkImages)
-    return () => {
-      _target.removeEventListener("scroll", checkImages)
-    }
-  }, [pathname])
-}
 
 
 
