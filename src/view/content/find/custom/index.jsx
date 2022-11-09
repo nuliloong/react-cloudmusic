@@ -5,10 +5,12 @@ import "./index.less"
 import { useState, useEffect, memo } from "react"
 import { to } from "@/utils/util"
 import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 function Custom() {
   const nickname = useSelector(({ user }) => user.userInfo?.profile?.nickname || "")
   const [songList, setsongList] = useState([])
+  const navigate = useNavigate()
   // 获取歌单
   const getSongList = async () => {
     const [err, res] = await to(getEverydayRecommendSongList())
@@ -17,6 +19,9 @@ function Custom() {
   useEffect(() => {
     getSongList()
   }, [])
+  const songlistClick = (item) => {
+    navigate("/find/songlistdetail?id="+item.id)
+  }
   return (
     <div className="custom">
       <div className="custom-title">
@@ -32,6 +37,9 @@ function Custom() {
             src={item.picUrl}
             name={item.name}
             playCount={item.playcount}
+            clickImg={() => songlistClick(item)}
+            clickIcon={() => songlistClick(item)}
+            clickName={() => songlistClick(item)}
           />
         ))}
       </div>

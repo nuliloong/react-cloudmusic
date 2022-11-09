@@ -3,6 +3,7 @@ import play from "@/assets/images/play.svg"
 import "./index.less"
 import ImgBox from "@/components/ImgBox"
 import RightList from "./RightList"
+import { useNavigate } from "react-router-dom"
 
 export default function OfficialList(props) {
   const { list } = props
@@ -14,6 +15,10 @@ export default function OfficialList(props) {
     let day = _time.getDate()
     return `${month}月${day}日更新`
   }
+  const navigate = useNavigate()
+  const songlistClick = (item) => {
+    navigate("/find/songlistdetail?id="+item.id)
+  }
   return (
     <div className="officiallist">
       <h2 className="officiallist-title">官方榜</h2>
@@ -21,8 +26,8 @@ export default function OfficialList(props) {
         {list.map((item) => (
           <div key={item.id} className="officiallist-list-item">
             <div className="item-left">
-              <ImgBox loading="lazy" size="220y220" src={item.coverImgUrl} className="img-box">
-                <div className="playicon">
+              <ImgBox onClick={() => songlistClick(item)} loading="lazy" size="220y220" src={item.coverImgUrl} className="img-box">
+                <div className="playicon" onClick={() => songlistClick(item)}>
                   <img src={play} />
                 </div>
                 <span className="time">{formatTime(item.updateTime)}</span>

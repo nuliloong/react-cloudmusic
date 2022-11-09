@@ -1,4 +1,9 @@
-import { getPlaylistAll, getPlaylistDetail } from "@/api/modules/find"
+import {
+  getAlbumDetail,
+  getAlbumDetailDy,
+  getPlaylistAll,
+  getPlaylistDetail,
+} from "@/api/modules/find"
 import { to } from "@/utils/util"
 import classNames from "classnames"
 import React, { useState, useEffect } from "react"
@@ -7,13 +12,14 @@ import HeadDetail from "./HeadDetail"
 import PlayList from "../../../../components/PlayList"
 import "./index.less"
 import { playAll } from "@h/play"
-import Subscribers from "./Subscribers"
+import AlbumIntroduce from "./AlbumIntroduce"
 import Comments from "./Comments"
 
 export default function SonglistDetail() {
   const [search] = useSearchParams()
   const id = search.get("id")
-  const [playlistDetail, setPlayListDetail] = useState({})
+  const [albumDetail, setAlbumDetail] = useState({})
+  const [albumDynamic, setAlbumDynamic] = useState({})
   const [type, setType] = useState(0)
   const [commentCount, setCommentCount] = useState(0)
   const [songlist, setSonglist] = useState([])
@@ -21,23 +27,24 @@ export default function SonglistDetail() {
 
   // 获取歌单详情
   const getDetail = async () => {
-    const [err, res] = await to(getPlaylistDetail(id))
-    if (res && res.playlist) {
-      setPlayListDetail(res.playlist)
-      setCommentCount(res.playlist?.commentCount)
+    const [err, res] = await to(getAlbumDetail(id))
+    if (res && res.album) {
+      setAlbumDetail(res.album)
+      setSonglist(res.songs)
+      setLoading(false)
     }
   }
-  // 获取歌单所有歌曲
-  const getSonglist = async () => {
-    const [err, res] = await to(getPlaylistAll(id))
-    if (res && res.songs) {
-      setSonglist(res.songs)
+  // 专辑动态信息
+  const getAlbumDy = async () => {
+    const [err, res] = await to(getAlbumDetailDy(id))
+    if (res) {
+      setAlbumDynamic(res)
+      setCommentCount(res.commentCount)
     }
-    setLoading(false)
   }
   useEffect(() => {
     getDetail()
-    getSonglist()
+    getAlbumDy()
   }, [])
   const menulist = [
     {
@@ -51,16 +58,22 @@ export default function SonglistDetail() {
       element: <Comments id={id} setCommentCount={setCommentCount} />,
     },
     {
-      title: "收藏者",
+      title: "专辑详情",
       id: "menu2",
-      element: <Subscribers id={id} />,
+      element: <AlbumIntroduce albumDetail={albumDetail} />,
     },
   ]
 
   return (
     <div className="listdetail">
       <div className="listdetail-head">
-        <HeadDetail id={id} setPlayListDetail={setPlayListDetail} playlistDetail={playlistDetail} onPlayAll={() => playAll(songlist)} />
+        <HeadDetail
+          id={id}
+          albumDetail={albumDetail}
+          onPlayAll={() => playAll(songlist)}
+          albumDynamic={albumDynamic}
+          setAlbumDynamic={setAlbumDynamic}
+        />
       </div>
       <ul className="listdetail-menu">
         {menulist.map((item, index) => (

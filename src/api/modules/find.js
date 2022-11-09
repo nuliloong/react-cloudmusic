@@ -78,7 +78,7 @@ export const getPlaylistAll = (id) => get('/playlist/track/all', { id })
  * @param cid : 评论 id
  * @param t : 是否点赞 , 1 为点赞 ,0 为取消点赞
  * @param type: 数字 , 资源类型 , 对应歌曲 , mv, 专辑 , 歌单 , 电台, 视频对应以下类型
- * 0: 歌曲1: mv2: 歌单3: 专辑4: 电台节目5: 视频6: 动态7: 电台
+ * 0: 歌曲  1: mv  2: 歌单  3: 专辑   4: 电台节目5: 视频6: 动态7: 电台
  * @tip 动态点赞不需要传入 id 参数，需要传入动态的 threadId
  */
 export const isLikeComment = (obj) => get('/comment/like', { ...obj, timestamp: +new Date() })
@@ -97,3 +97,16 @@ export const replyComment = (obj) => get('/comment', obj)
  * @param id : 歌单 id
  */
 export const subPlayList = (t, id) => get('/playlist/subscribe', { t, id })
+/**获取专辑内容 */
+export const getAlbumDetail = (id) => get('/album', { id })
+/**专辑动态信息 */
+export const getAlbumDetailDy = (id) => get('/album/detail/dynamic', { id, timestamp: +new Date()  })
+
+/**
+ * 收藏专辑
+ * @param t : 类型,1:收藏,2:取消收藏 
+ * @param id : 专辑 id
+ */
+export const subAlbumSub = (t, id) => get('/album/sub', { t, id })
+/**获取专辑评论 */
+export const getAlbumComment = ({ id, offset, limit }) => get('/comment/album', { id, offset, limit, timerstamp: +new Date() })

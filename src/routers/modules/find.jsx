@@ -24,6 +24,14 @@ const routers = [
         },
       },
       {
+        path: "/find/albumdetail",
+        element: lazyLoad(React.lazy(() => import("@v/content/find/album_detail"))),
+        meta: {
+          requiresAuth: false,
+          title: "发现音乐-专辑详情",
+        },
+      },
+      {
         path: "/find/daily_recommended",
         element: lazyLoad(React.lazy(() => import("@v/content/find/daily_recommended"))),
         meta: {

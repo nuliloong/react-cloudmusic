@@ -6,6 +6,7 @@ import { Spin } from "antd"
 import classNames from "classnames"
 import React from "react"
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import PlaylistItem from "../../../../components/PlaylistItem"
 import "./index.less"
 
@@ -15,6 +16,7 @@ export default function SongList() {
   const [songList, setSongList] = useState([])
   const [isLoading, setLoading] = useState(false)
   const [categoryList, setCategoryList] = useState({})
+  const navigate = useNavigate()
   const [cat, setCat] = useState("全部")
   // const [pageIndex, setPageIndex] = useState(1)
   const [page, setPage] = useState({
@@ -52,6 +54,9 @@ export default function SongList() {
     }
     setLoading(false)
   }
+  const songlistClick = (item) => {
+    navigate("/find/songlistdetail?id="+item.id)
+  }
 
   // 监听分类
   useEffect(() => {
@@ -71,6 +76,7 @@ export default function SongList() {
         <div
           className="songlist-banner"
           style={{ backgroundImage: `url(${boutique.coverImgUrl}?param=30y20)` }}
+          onClick={() => songlistClick(boutique)}
         >
           <div className="songlist-banner-left">
             <ImgBox
@@ -94,7 +100,7 @@ export default function SongList() {
       ) : null}
       <div className="songlist-tagbox">
         <button className="tagbtn">
-          精品歌单
+          歌单分类
           <RightOutlined />
         </button>
         <div className="taglist">
@@ -119,6 +125,9 @@ export default function SongList() {
               src={item.coverImgUrl}
               name={item.name}
               playCount={item.playCount}
+              clickImg={() => songlistClick(item)}
+              clickIcon={() => songlistClick(item)}
+              clickName={() => songlistClick(item)}
             />
           ))}
         </div>

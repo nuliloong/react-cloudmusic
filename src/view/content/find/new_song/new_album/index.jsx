@@ -6,6 +6,7 @@ import classNames from "classnames"
 import ImgBox from "@/components/ImgBox"
 import play from "@/assets/images/play.svg"
 import { Spin } from "antd"
+import { useNavigate } from "react-router-dom"
 
 function NewAlbum() {
   const [type, setType] = useState(true)
@@ -45,6 +46,10 @@ function NewAlbum() {
   //   scrollbox.addEventListener("scroll", scrollChange)
   //   return () => scrollbox.removeEventListener("scroll", scrollChange)
   // }, [])
+  const navigate = useNavigate()
+  const albumClick = (item) => {
+    navigate("/find/albumdetail?id="+item.id)
+  }
 
   return (
     <>
@@ -80,12 +85,13 @@ function NewAlbum() {
                 className="img-box"
                 width="100%"
                 height="100%"
+                onClick={()=>albumClick(item)}
               >
-                <div className="playicon">
+                <div className="playicon" onClick={()=>albumClick(item)}>
                   <img src={play} />
                 </div>
               </ImgBox>
-              <div className="item-name">
+              <div className="item-name" onClick={()=>albumClick(item)}>
                 <span>{item.name}</span>
                 {item?.transNames?.length ? (
                   <span className="transnames">{item.name}</span>
