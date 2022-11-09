@@ -1,73 +1,37 @@
 .listdetail {
-  &-head {
+  &-menu {
+    margin: 0px 0 5px 35px;
     display: flex;
-    padding: 30px;
-    &-left {
-      width: 190px;
-      height: 190px;
-      .img-box {
-        .img-box(100%);
-      }
-    }
-    &-right {
-      flex: 1;
-      padding-left: 15px;
-      .name {
-        font-size: 20px;
+    line-height: 40px;
+    font-size: 16px;
+    width: 250px;
+    justify-content: space-between;
+    &-item {
+      .my-navlink();
+      cursor: pointer;
+      position: relative;
+      &.active {
+        font-size: 18px;
         font-weight: bold;
-        padding-bottom: 10px;
-        user-select: text;
-        span {
-          user-select: none;
-          color: @primary-color;
-          border: 1px solid @primary-color;
-          padding: 0 3px;
-          border-radius: 3px;
-          font-size: 14px;
-          margin-right: 5px;
-        }
-      }
-      .user {
-        font-size: 12px;
-        .nickname {
-          color: @default-theme-linkColor;
-          margin: 0 10px;
-        }
-        .ctime {
-          color: @default-theme-grayColor;
-        }
-      }
-      .btn {
-        margin: 10px 0;
-        button {
-          margin-right: 10px;
-        }
-        .backr {
-          color: #fff;
+        &::after {
+          content: "";
           background-color: @default-theme-color;
-          &:hover {
-            background-color: #d62e2e;
-          }
+          width: 76%;
+          height: 4px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          border-radius: 30px;
         }
       }
-      .descbox{
-        display: flex;
-        .anticon{
-          cursor: pointer;
-        }
-        .desc{
-          .overflow(1)
-        }
-        .expand{
-          overflow: initial;
-          user-select: text;
-          display: block;
-        }
-        
+      &:hover {
+        color: @default-theme-hoverTextColor;
       }
     }
   }
-  &-list{
-
+  &-list {
+    padding-bottom: 30px;
   }
 }

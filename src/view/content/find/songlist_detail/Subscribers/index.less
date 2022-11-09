@@ -1,0 +1,29 @@
+.subscribers {
+  padding: 20px 30px 0;
+  min-height: 200px;
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    &-item {
+      display: flex;
+      width: 33.33%;
+      padding: 10px 5px;
+      .item-right {
+        flex: 1;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-evenly;
+        padding-left: 10px;
+        .desc {
+          .overflow(1);
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  &-pagination {
+    text-align: center;
+    width: 100%;
+    padding-top: 20px;
+  }
+}

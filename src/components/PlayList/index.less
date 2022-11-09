@@ -1,0 +1,55 @@
+.playlist {
+  .songname {
+    display: flex;
+    align-items: center;
+    .name {
+      .overflow(1);
+      .album {
+        color: @default-theme-grayColor;
+      }
+    }
+    .vip {
+      color: #fe672e;
+      border: 1px solid #fe672e;
+      padding: 0 2px;
+      margin-left: 5px;
+      display: inline-block;
+      height: 15px;
+      line-height: 11px;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+    .mv {
+      color: @primary-color;
+      border: 1px solid @primary-color;
+      padding: 0 2px;
+      margin-left: 5px;
+      display: inline-block;
+      height: 15px;
+      line-height: 11px;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+  }
+  .ant-table {
+    .my-table();
+    .play-row {
+      color: @primary-color !important;
+    }
+    .index-col {
+      width: 50px;
+      padding-right: 0;
+      padding-left: 20px;
+      color: @default-theme-grayColor;
+    }
+    .red-col {
+      color: @primary-color;
+    }
+    // .cur-col {
+    //   color: @primary-color;
+    // }
+    .duration-col {
+      color: @default-theme-grayColor;
+    }
+  }
+}

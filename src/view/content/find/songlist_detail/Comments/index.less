@@ -1,0 +1,75 @@
+.comments {
+  padding: 0px 30px;
+  min-height: 200px;
+  &-reply {
+    padding-top: 10px;
+    .textarea {
+      position: relative;
+      textarea {
+        height: 70px;
+        resize: none;
+      }
+      &::after{
+        position: absolute;
+        bottom: 0;
+        right: 5px;
+      }
+    }
+  }
+  &-item {
+    display: flex;
+    border-bottom: 1px solid @default-theme-border;
+    padding: 20px 0;
+    &-left {
+    }
+    &-right {
+      flex: 1;
+      padding-left: 15px;
+      font-size: 13px;
+      .username {
+        user-select: none;
+        cursor: pointer;
+        color: @default-theme-linkColor;
+      }
+      .commit {
+        user-select: text;
+        padding-bottom: 5px;
+      }
+      .bereplied {
+        user-select: text;
+        color: #949494;
+        background-color: #f4f4f4;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+      .operation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .time {
+          color: @default-theme-grayColor;
+          font-size: 12px;
+        }
+        .interactive {
+          font-size: 14px;
+          .like {
+            cursor: pointer;
+            margin-right: 15px;
+            &:hover {
+              color: @default-theme-hoverTextColor;
+            }
+            &.liked {
+              color: @default-theme-linkColor;
+            }
+          }
+          .comm {
+            cursor: pointer;
+            &:hover {
+              color: @default-theme-hoverTextColor;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -16,7 +16,7 @@ import {
   setPlayState,
   setSongUrl,
 } from "@/redux/modules/play/action"
-import { useRef } from "react"
+import { getSongInfo2 as getSongInfo } from "@h/play"
 
 function NewMusic() {
   const [isLoading, setLoading] = useState(false)
@@ -24,22 +24,6 @@ function NewMusic() {
   const [songList, setSongList] = useState([])
   const dispatch = useDispatch()
 
-  // 提取需要的歌曲信息
-  const getSongInfo = (song) => {
-    let nowSongInfo = { al: {}, ar: [{}] }
-    nowSongInfo.id = song.id //歌曲id
-    nowSongInfo.name = song.name //歌曲名
-    nowSongInfo.dt = song.duration //歌曲时长
-    nowSongInfo.al.picUrl = song.album?.picUrl || "" //专辑封面
-    nowSongInfo.al.name = song.album.name //专辑名
-    nowSongInfo.al.id = song.album.id //专辑id
-    nowSongInfo.ar[0].name = song.artists[0].name //歌手名
-    nowSongInfo.ar[0].id = song.artists[0].id //歌手id
-    if (song.mvid != 0) {
-      nowSongInfo.mv = song.mvid //mv的id
-    }
-    return nowSongInfo
-  }
   // 播放音乐
   const playMusic = async (music) => {
     const [err, res] = await to(checkMusic(music.id))
@@ -57,6 +41,7 @@ function NewMusic() {
     message.warning(res?.message || "暂时无法播放，换首试试")
     return
   }
+  // 播放全部
   let flag = 0
   const playAll = async () => {
     const result = await playMusic(songList[flag])

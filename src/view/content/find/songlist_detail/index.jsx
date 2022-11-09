@@ -1,101 +1,80 @@
-import { getPlaylistDetail } from "@/api/modules/find"
-import ImgBox from "@/components/ImgBox"
-import MyButton from "@/components/MyButton"
-import { formatCount, formatDate, to } from "@/utils/util"
-import {
-  CaretDownOutlined,
-  CaretUpOutlined,
-  FolderAddOutlined,
-  LogoutOutlined,
-  PlayCircleOutlined,
-  UserOutlined,
-} from "@ant-design/icons"
-import { Tag, Avatar } from "antd"
+import { getPlaylistAll, getPlaylistDetail } from "@/api/modules/find"
+import { to } from "@/utils/util"
 import classNames from "classnames"
 import React, { useState, useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
+import HeadDetail from "./HeadDetail"
+import PlayList from "../../../../components/PlayList"
 import "./index.less"
+import { playAll } from "@h/play"
+import Subscribers from "./Subscribers"
+import Comments from "./Comments"
 
 export default function SonglistDetail() {
   const [search] = useSearchParams()
-  const id = search.get('id')
+  const id = search.get("id")
   const [playlistDetail, setPlayListDetail] = useState({})
-  const [isExpand, setExpand] = useState(false)
+  const [type, setType] = useState(1)
+  const [commentCount, setCommentCount] = useState(0)
+  const [songlist, setSonglist] = useState([])
+  const [loading, setLoading] = useState(true)
 
+  // 获取歌单详情
   const getDetail = async () => {
     const [err, res] = await to(getPlaylistDetail(id))
     if (res && res.playlist) {
       setPlayListDetail(res.playlist)
+      setCommentCount(res.playlist?.commentCount)
     }
+  }
+  // 获取歌单所有歌曲
+  const getSonglist = async () => {
+    const [err, res] = await to(getPlaylistAll(id))
+    if (res && res.songs) {
+      setSonglist(res.songs)
+    }
+    setLoading(false)
   }
   useEffect(() => {
     getDetail()
+    getSonglist()
   }, [])
+  const menulist = [
+    {
+      title: "歌曲列表",
+      id: "menu0",
+      element: <PlayList songs={songlist} loading={loading} />,
+    },
+    {
+      title: `评论(${commentCount})`,
+      id: "menu1",
+      element: <Comments id={id} setCommentCount={setCommentCount} />,
+    },
+    {
+      title: "收藏者",
+      id: "menu2",
+      element: <Subscribers id={id} />,
+    },
+  ]
 
   return (
     <div className="listdetail">
       <div className="listdetail-head">
-        <div className="listdetail-head-left">
-          <ImgBox
-            loading="lazy"
-            size="200y200"
-            src={playlistDetail.coverImgUrl}
-            className="img-box"
-          />
-        </div>
-        <div className="listdetail-head-right">
-          <div className="name">
-            <span>歌单</span>
-            {playlistDetail.name}
-          </div>
-          <div className="user">
-            <Avatar size={30} src={playlistDetail?.creator?.avatarUrl} icon={<UserOutlined />} />
-            <span className="nickname">{playlistDetail?.creator?.nickname}</span>
-            <span className="ctime">{formatDate(playlistDetail.createTime, "yyyy-MM-dd")}创建</span>
-          </div>
-          <div className="btn">
-            <MyButton className="backr" icon={<PlayCircleOutlined />}>
-              播放全部
-            </MyButton>
-            <MyButton icon={<FolderAddOutlined />}>
-              收藏({formatCount(playlistDetail.subscribedCount || 0)})
-            </MyButton>
-            <MyButton icon={<LogoutOutlined rotate="-45" />}>
-              分享({formatCount(playlistDetail.shareCount || 0)})
-            </MyButton>
-          </div>
-          <div>
-            标签：
-            {playlistDetail?.tags?.map((item, index) => (
-              <Tag key={index} color="volcano">
-                {item}
-              </Tag>
-            ))}
-          </div>
-          <div>
-            <span>歌曲：{playlistDetail?.trackIds?.length}首</span>
-            <span style={{ paddingLeft: "20px" }}>
-              播放：{formatCount(playlistDetail?.playCount)}
-            </span>
-          </div>
-          <div className="descbox">
-            {playlistDetail?.description ? (
-              <>
-                <div className={classNames("desc", { expand: isExpand })}>
-                  简介：{playlistDetail.description}
-                </div>
-                <div onClick={() => setExpand(!isExpand)}>
-                  {isExpand ? <CaretUpOutlined /> : <CaretDownOutlined />}
-                </div>
-              </>
-            ) : (
-              <div>简介：暂无简介</div>
-            )}
-          </div>
-        </div>
+        <HeadDetail id={id} setPlayListDetail={setPlayListDetail} playlistDetail={playlistDetail} onPlayAll={() => playAll(songlist)} />
       </div>
+      <ul className="listdetail-menu">
+        {menulist.map((item, index) => (
+          <div
+            key={item.id}
+            className={classNames("listdetail-menu-item", { active: index === type })}
+            onClick={() => setType(index)}
+          >
+            {item.title}
+          </div>
+        ))}
+      </ul>
       <div className="listdetail-list">
-        xxxx
+        <div className="menu-element">{menulist[type].element}</div>
       </div>
     </div>
   )

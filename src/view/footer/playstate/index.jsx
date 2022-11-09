@@ -91,7 +91,7 @@ function PlayState() {
     if (res && res?.data[0]?.url) {
       dispatch(setSongUrl(res.data[0].url))
     } else {
-      dispatch(deleteSong(currentSongDetail.id))
+      // dispatch(deleteSong(currentSongDetail.id))
       getNextSong()
       message.warning("改歌曲暂时无法播放，已切换下一首")
     }

@@ -59,11 +59,41 @@ export const getRecommendSongs = () => get('/recommend/songs')
 /**获取歌单详情 */
 export const getPlaylistDetail = (id) => get('/playlist/detail', { id, timerstamp: +new Date() })
 /**获取歌单收藏者 */
-export const getPlaylistSubscribers = (id, offset, limit) => get('/playlist/subscribers', { id, offset, limit })
+export const getPlaylistSubscribers = ({ id, offset, limit }) => get('/playlist/subscribers', { id, offset, limit })
 /**获取歌单评论 */
-export const getPlaylistComment = (id, offset, limit) => get('/comment/playlist', { id, offset, limit, timerstamp: +new Date() })
+export const getPlaylistComment = ({ id, offset, limit }) => get('/comment/playlist', { id, offset, limit, timerstamp: +new Date() })
 /**
  * 获取每首歌的详情
  * @param {string} ids 多个用逗号分割
  */
 export const getSongDetail = (ids) => get('/song/detail', { ids })
+/**
+ * 获取歌单所有歌曲
+ * @param {string} id 歌单id
+ */
+export const getPlaylistAll = (id) => get('/playlist/track/all', { id })
+/**
+ * 给评论点赞
+ * @param id 资源 id, 如歌曲 id,mv id
+ * @param cid : 评论 id
+ * @param t : 是否点赞 , 1 为点赞 ,0 为取消点赞
+ * @param type: 数字 , 资源类型 , 对应歌曲 , mv, 专辑 , 歌单 , 电台, 视频对应以下类型
+ * 0: 歌曲1: mv2: 歌单3: 专辑4: 电台节目5: 视频6: 动态7: 电台
+ * @tip 动态点赞不需要传入 id 参数，需要传入动态的 threadId
+ */
+export const isLikeComment = (obj) => get('/comment/like', { ...obj, timestamp: +new Date() })
+/**
+ * 
+ * @param t:1 发送, 2 回复
+ * @param type: 数字,资源类型,对应歌曲,mv,专辑,歌单,电台,视频对应类型
+ * @param id:对应资源 id
+ * @param content :要发送的内容
+ * @param commentId :回复的评论 id (回复评论时必填)
+ */
+export const replyComment = (obj) => get('/comment', obj)
+/**
+ * 收藏歌单
+ * @param t : 类型,1:收藏,2:取消收藏 
+ * @param id : 歌单 id
+ */
+export const subPlayList = (t, id) => get('/playlist/subscribe', { t, id })

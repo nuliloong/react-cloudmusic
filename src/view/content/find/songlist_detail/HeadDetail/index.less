@@ -1,0 +1,67 @@
+.head {
+  display: flex;
+  padding: 30px 30px 20px;
+  &-left {
+    width: 190px;
+    height: 190px;
+    .img-box {
+      .img-box(100%);
+    }
+  }
+  &-right {
+    flex: 1;
+    padding-left: 15px;
+    .name {
+      font-size: 20px;
+      font-weight: bold;
+      padding-bottom: 10px;
+      user-select: text;
+      span {
+        user-select: none;
+        color: @primary-color;
+        border: 1px solid @primary-color;
+        padding: 0 3px;
+        border-radius: 3px;
+        font-size: 14px;
+        margin-right: 5px;
+      }
+    }
+    .user {
+      font-size: 12px;
+      .nickname {
+        color: @default-theme-linkColor;
+        margin: 0 10px;
+      }
+      .ctime {
+        color: @default-theme-grayColor;
+      }
+    }
+    .btn {
+      margin: 10px 0;
+      button {
+        margin-right: 10px;
+      }
+      .backr {
+        color: #fff;
+        background-color: @default-theme-color;
+        &:hover {
+          background-color: #d62e2e;
+        }
+      }
+    }
+    .descbox {
+      display: flex;
+      .anticon {
+        cursor: pointer;
+      }
+      .desc {
+        .overflow(1);
+      }
+      .expand {
+        overflow: initial;
+        user-select: text;
+        display: block;
+      }
+    }
+  }
+}

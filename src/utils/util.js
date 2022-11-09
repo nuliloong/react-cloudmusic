@@ -126,12 +126,16 @@ export const randomOther = (index, max) => {
 	return random !== index ? random : randomOther(index, max)
 }
 
-/* 格式化日期 */
+/**
+ * 格式化日期
+ * @param {Date,Number} date
+ * @param {String} fmt yyyy-MM-dd hh:mm:ss
+ */
 export const formatDate = (date, fmt) => {
 	if (!date) return
 	const _date = new Date(date)
 	var o = {
-		"M+": _date.getMonth() + 1,                 //月份 
+		"M+": _date.getMonth() + 1,               //月份 
 		"d+": _date.getDate(),                    //日 
 		"h+": _date.getHours(),                   //小时 
 		"m+": _date.getMinutes(),                 //分 
