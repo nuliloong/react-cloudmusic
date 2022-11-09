@@ -22,4 +22,25 @@
       background-color: @item-bgcolor;
     }
   }
+  .mymenu {
+    &-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 5px 5px;
+      color: @default-theme-grayColor;
+      .anticon {
+        cursor: pointer;
+        &:hover {
+          color: @default-theme-hoverTextColor;
+        }
+      }
+    }
+    &-item {
+      padding-left: 10px;
+      &.menu-list-item {
+        font-size: 14px;
+      }
+    }
+  }
 }

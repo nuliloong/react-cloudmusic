@@ -4,7 +4,6 @@ import { Modal } from "antd"
 import React, { memo, useState } from "react"
 import QrcodeLogin from "./qrcode"
 import PhoneLogin from "./phone"
-import classNames from "classnames"
 import "./index.less"
 
 const LoginModel = () => {
