@@ -36,6 +36,11 @@ export const getUserDetail = (uid) => get('/user/detail', { uid })
 
 
 /**签到 */
-export const dailySignin = () => get('/daily_signin', { type:1 })
+export const dailySignin = () => get('/daily_signin', { type: 1 })
 
 
+/**获取用户歌单 */
+export const getUserSonglist = (uid) => get('/user/playlist', { uid, timestamp: +new Date(), limit: 1000, })
+
+/**喜欢音乐列表 */
+export const getLikeList = (uid) => get('/likelist', { uid, timestamp: +new Date() })

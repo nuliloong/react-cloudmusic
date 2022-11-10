@@ -23,3 +23,7 @@ export const ADD_PLAYINGLIST = 'addPlayinglist'
 export const CLEAR_PLAY_LIST = 'clearPlayList'
 /**删除播放列表单个 */
 export const DELETE_SONG = 'deleteSong'
+/**修改用户歌单 */
+export const SET_USER_SONG_LIST = 'setUserSongList'
+/**修改喜欢音乐列表 */
+export const SET_USER_LIKE_LIST = 'setUserLikeList'

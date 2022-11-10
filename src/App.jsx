@@ -15,6 +15,7 @@ function App() {
   document.body.classList = [localStorage.getItem("theme-color") || "theme-red"]
 
   const userId = useSelector(({ user }) => user.userId)
+
   return (
     <HashRouter>
       <AuthRouter>

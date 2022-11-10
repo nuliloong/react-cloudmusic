@@ -1,4 +1,8 @@
-import { SET_USER_ID, SET_LAYOUT_SIDER_WIDTH, CHANGE_LOGIN_SHOW, SET_USER_INFO } from "../../constant";
+import {
+  SET_USER_ID, SET_LAYOUT_SIDER_WIDTH, CHANGE_LOGIN_SHOW, SET_USER_INFO,
+  SET_USER_SONG_LIST,
+  SET_USER_LIKE_LIST
+} from "../../constant";
 import produce from 'immer';
 
 const prevState = {
@@ -12,13 +16,16 @@ const prevState = {
   },
   /**登录弹窗 */
   loginShow: false,
+  // 用户歌单
+  userSongList: JSON.parse(localStorage.getItem('user_userSongList') || '[]'),
+  // 喜欢音乐列表
+  userLikeList: JSON.parse(localStorage.getItem('user_userLikeList') || '[]'),
 }
 const userReducer = (state = prevState, { type, data }) =>
   produce(state, draft => {
     switch (type) {
       case SET_USER_ID:
         draft.userId = data
-        console.log('data>>', data)
         localStorage.setItem('user_id', data)
         break;
       case SET_LAYOUT_SIDER_WIDTH:
@@ -31,6 +38,14 @@ const userReducer = (state = prevState, { type, data }) =>
       case SET_USER_INFO:
         draft.userInfo = data
         localStorage.setItem('user_info', JSON.stringify(data))
+        break;
+      case SET_USER_SONG_LIST:
+        draft.userSongList = data
+        localStorage.setItem('user_userSongList', JSON.stringify(draft.userSongList))
+        break;
+      case SET_USER_LIKE_LIST:
+        draft.userLikeList = data
+        localStorage.setItem('user_userLikeList', JSON.stringify(draft.userLikeList))
         break;
       default:
         return draft

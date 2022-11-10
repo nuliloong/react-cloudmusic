@@ -1,5 +1,5 @@
 import { dailySignin } from "@/api/modules/login"
-import { loginOut, refreshUserInfo } from "@/redux/modules/user/action"
+import { loginOut, refreshUserInfo } from "@/hooks/user"
 import { to } from "@/utils/util"
 import {
   CrownOutlined,
@@ -12,8 +12,7 @@ import {
   UserSwitchOutlined,
   WeiboCircleOutlined,
 } from "@ant-design/icons"
-import { message } from "antd"
-import { Button } from "antd"
+import { message, Button } from "antd"
 import React, { memo } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import "./index.less"
@@ -31,7 +30,7 @@ function UserStateBox() {
     })
   )
   const logout = () => {
-    dispatch(loginOut())
+    loginOut()
   }
 
   // 签到
@@ -39,7 +38,7 @@ function UserStateBox() {
     const [err, res] = await to(dailySignin())
     if (res) {
       message.success("签到成功")
-      dispatch(refreshUserInfo())
+      refreshUserInfo()
     }
   }
   // 打开新标签

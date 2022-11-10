@@ -10,7 +10,7 @@ import {
 
 import store from "@/redux"
 import { message } from "antd"
-const { dispatch } = store
+const { dispatch, getState } = store
 /**提取需要的歌曲信息 */
 export const getSongInfo = (song) => {
   let nowSongInfo = { al: {}, ar: [{}] }
@@ -58,7 +58,7 @@ export const playMusic = async (music) => {
       dispatch(addPlayinglist(getSongInfo(music))) // 添加到播放列表
       return true
     }
-  message.warning(res?.message || "暂时无法播放，换首试试")
+    message.warning(res?.message || "暂时无法播放，换首试试")
     return
   }
   message.warning(res?.message || "暂时无法播放，换首试试")
@@ -92,3 +92,5 @@ export const playAll = (songList) => {
   }
   loop(songList)
 }
+
+

@@ -5,7 +5,7 @@ import { useTitle } from "ahooks"
 import store from "@/redux"
 
 import AxiosCanceler from "@/api/axiosCanceler"
-import { changeLoginShow } from "@/redux/modules/user/action"
+// import { changeLoginShow } from "@/redux/modules/user/action"
 import { Navigate } from "react-router-dom"
 /**
  * @description 路由守卫组件
@@ -15,7 +15,7 @@ const AuthRouter = (props) => {
   // document.title
   const route = searchRoute(pathname, rootRouter)
   // 清除接口
-  AxiosCanceler.removeAllPending()
+  // AxiosCanceler.removeAllPending()
 
   useTitle(route?.meta?.title || "云音乐")
   // document.title = route?.meta?.title

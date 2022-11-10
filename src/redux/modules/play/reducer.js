@@ -4,20 +4,20 @@ import {
   SAVE_SONG_DETAIL,
   ADD_PLAYINGLIST,
   CLEAR_PLAY_LIST,
-  DELETE_SONG
+  DELETE_SONG,
 } from "../../constant";
 import produce from 'immer';
 
 const prevState = {
   // 音乐播放状态
   isPlaying: false,
-  //当前歌曲url
+  // 当前歌曲url
   currentSongUrl: localStorage.getItem('play_currentSongUrl') || '',
   // 当前下载音乐信息
   downloadMusicInfo: {},
   // 当前歌曲详情
   currentSongDetail: JSON.parse(localStorage.getItem('play_currentSongDetail') || '{}'),
-  //正在播放列表
+  // 正在播放列表
   playingList: JSON.parse(localStorage.getItem('play_playingList') || '[]'),
   // 历史播放列表
   // historyPlay: JSON.parse(localStorage.getItem('play_historyPlay') || '[]'),

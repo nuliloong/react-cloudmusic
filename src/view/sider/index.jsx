@@ -3,28 +3,22 @@ import "./index.less"
 import { NavLink } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { PlusOutlined } from "@ant-design/icons"
+import { useEffect } from "react"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function Sider() {
   const userId = useSelector(({ user }) => user.userId)
-  const menuList = [
-    { title: "发现音乐", path: "/find" },
-    { title: "播客", path: "/dj" },
-    { title: "视频", path: "/video" },
-    { title: "关注", path: "/follow" },
-    { title: "直播", path: "/live" },
-    { title: "私人FM", path: "/private_fm" },
-  ]
-  const myMenuList = [
+  const userSongList = useSelector(({ user }) => user.userSongList)
+  const navigate = useNavigate()
+  const [myMenuList, setMyMenuList] = useState([
     {
       title: "我的音乐",
       key: "music",
       selectable: false,
       children: [
-        // { title: "本地与下载", key: "music-1" },
-        // { title: "最近播放", key: "music-2" },
-        { title: "我的音乐云盘", key: "music-3" },
-        // { title: "我的播客", key: "music-4" },
-        { title: "我的收藏", key: "music-5" },
+        { name: "我的音乐云盘", id: "music-1" },
+        { name: "我的收藏", id: "music-2" },
       ],
     },
     {
@@ -32,12 +26,29 @@ export default function Sider() {
       key: "favorites",
       selectable: false,
       rightIcon: <PlusOutlined />,
-      children: [
-        { title: "我喜欢的音乐", key: "favorites-1" },
-        { title: "歌单1", key: "favorites-2" },
-        { title: "歌单2", key: "favorites-3" },
-      ],
+      children: [],
     },
+  ])
+
+  useEffect(() => {
+    const newList = myMenuList.map((item) => {
+      if (item.key === "favorites") {
+        item.children = userSongList
+      }
+      return item
+    })
+    setMyMenuList(newList)
+  }, [userSongList])
+  const favClick = (item) => {
+    navigate('/songlistdetail/'+item.id)
+  }
+  const menuList = [
+    { title: "发现音乐", path: "/find" },
+    { title: "播客", path: "/dj" },
+    { title: "视频", path: "/video" },
+    { title: "关注", path: "/follow" },
+    { title: "直播", path: "/live" },
+    { title: "私人FM", path: "/private_fm" },
   ]
   return (
     <div className="menu-container scrollbar-hover">
@@ -48,8 +59,6 @@ export default function Sider() {
           </NavLink>
         ))}
       </div>
-      {/* <Tree blockNode={true} defaultExpandedKeys={["music", "favorites"]} treeData={myMenuList} /> */}
-
       <div>
         {userId
           ? myMenuList.map((item) => (
@@ -58,9 +67,13 @@ export default function Sider() {
                   <div>{item.title}</div>
                   {item.rightIcon ? item.rightIcon : null}
                 </div>
-                {item.children.map((i2) => (
-                  <div key={i2.key} className="mymenu-item menu-list-item">
-                    {i2.title}
+                {item?.children?.map((i2) => (
+                  <div
+                    key={i2.id}
+                    className="mymenu-item menu-list-item"
+                    onClick={() => favClick(i2)}
+                  >
+                    {i2.name}
                   </div>
                 ))}
               </div>

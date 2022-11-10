@@ -1,4 +1,3 @@
-import { getAccountInfo } from "@/redux/modules/user/action"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Spin } from "antd"
 import React, { memo, useEffect, useState } from "react"
@@ -7,6 +6,7 @@ import { getQrKey, getQrBase, getQrState } from "@/api/modules/login"
 import { CheckCircleOutlined, LoadingOutlined } from "@ant-design/icons"
 import phone from "@/assets/images/phone.png"
 import "./index.less"
+import { getAccountInfo } from "@/hooks/user"
 
 const QrcodeLogin = (props) => {
   const [error, setError] = useState("")
@@ -26,7 +26,7 @@ const QrcodeLogin = (props) => {
         clearInterval(timer)
         setSuccess(true)
         timer = setTimeout(() => {
-          dispatch(getAccountInfo())
+          getAccountInfo()
         }, 2000)
       }
       if (res.code === 800) {
