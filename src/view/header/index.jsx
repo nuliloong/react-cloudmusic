@@ -148,9 +148,9 @@ export default function Header() {
             {/* <div className="setting-sys-item" title="mini模式">
               <PicCenterOutlined />
             </div> */}
-            <div className="setting-sys-item" title={!isMini ? "最小化" : "网页全屏"} onClick={mini}>
+            {/* <div className="setting-sys-item" title={!isMini ? "最小化" : "网页全屏"} onClick={mini}>
               <PicCenterOutlined />
-            </div>
+            </div> */}
             <div className="setting-sys-item" title={isFull ? "退出全屏" : "全屏"} onClick={full}>
               {isFull ? <FullscreenExitOutlined /> : <ExpandOutlined />}
             </div>

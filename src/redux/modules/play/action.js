@@ -5,7 +5,9 @@ import {
   SAVE_SONG_DETAIL,
   ADD_PLAYINGLIST,
   CLEAR_PLAY_LIST,
-  DELETE_SONG
+  DELETE_SONG,
+  SET_CURRENT_SECOND,
+  SET_PLAYER_EXPAND
 } from "../../constant";
 // import store from "./store.js";
 
@@ -21,5 +23,9 @@ export const addPlayinglist = data => ({ type: ADD_PLAYINGLIST, data })
 export const clearPlayList = data => ({ type: CLEAR_PLAY_LIST, data })
 /**删除播放列表单个 */
 export const deleteSong = data => ({ type: DELETE_SONG, data })
+/**修改当前播放时间 */
+export const setCurrentSecond = data => ({ type: SET_CURRENT_SECOND, data })
+/**修改播放详情展开 */
+export const setPlayerExpand = data => ({ type: SET_PLAYER_EXPAND, data })
 
 

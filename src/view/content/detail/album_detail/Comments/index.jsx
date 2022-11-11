@@ -1,13 +1,11 @@
-import { getAlbumComment, getPlaylistComment, isLikeComment, replyComment } from "@/api/modules/find"
+import { getAlbumComment, isLikeComment, replyComment } from "@/api/modules/find"
+import Comment from "@/components/CpmmentItem"
 import MyButton from "@/components/MyButton"
-import { formatDate, httpToHttps, to } from "@/utils/util"
-import { LikeOutlined, MessageOutlined } from "@ant-design/icons"
+import { to } from "@/utils/util"
 import { message } from "antd"
-import { Spin, Avatar, Pagination, Input } from "antd"
+import { Spin, Pagination, Input } from "antd"
 const { TextArea } = Input
-import classNames from "classnames"
-import React, { useEffect, useState } from "react"
-import { useRef } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { useSelector } from "react-redux"
 import "./index.less"
 
@@ -98,6 +96,12 @@ export default function Comments({ id, setCommentCount }) {
       setCommentId()
     }
   }
+  const pageinationChange = async (pageIndex) => {
+    await getComments(pageIndex)
+
+    const scrollbox = document.querySelector(".ant-layout-content")
+    scrollbox.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   return (
     <Spin spinning={loading}>
@@ -117,43 +121,7 @@ export default function Comments({ id, setCommentCount }) {
             <MyButton onClick={comment}>评论</MyButton>
           </div>
         </div>
-        {commentList.map((item) => (
-          <div key={item.commentId} className="comments-item">
-            <div className="comments-item-left">
-              <Avatar size={45} src={httpToHttps(item?.user?.avatarUrl)} />
-            </div>
-            <div className="comments-item-right">
-              {/* 主评论 */}
-              <div className="commit">
-                <span className="username">{item.user?.nickname}</span>：{item.content}
-              </div>
-              {/* 副评论 */}
-              {item?.beReplied.length ? (
-                <div className="bereplied">
-                  {item.beReplied.map((be) => (
-                    <span key={be.beRepliedCommentId}>
-                      <span className="username">@{be.user?.nickname}</span>：{be.content}
-                    </span>
-                  ))}
-                </div>
-              ) : null}
-              {/* 点赞区 */}
-              <div className="operation">
-                <div className="time">{formatDate(item.time, "yyyy-MM-dd hh:mm")}</div>
-                <div className="interactive">
-                  <span
-                    className={classNames("like", { liked: item.liked })}
-                    onClick={() => clickLike(item)}
-                  >
-                    <LikeOutlined />
-                    {item.likedCount || 0}
-                  </span>
-                  <MessageOutlined className="comm" onClick={(e) => commentItem(item, e)} />
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+        <Comment list={commentList} onComment={commentItem} onLike={clickLike} />
         <div className="comments-pagination">
           <Pagination
             disabled={!commentList.length}
@@ -161,7 +129,7 @@ export default function Comments({ id, setCommentCount }) {
             total={page.total}
             pageSize={30}
             showSizeChanger={false}
-            onChange={(pageIndex) => getComments(pageIndex)}
+            onChange={pageinationChange}
           />
         </div>
       </div>

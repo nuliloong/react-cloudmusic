@@ -19,20 +19,21 @@ import logo from "@/assets/logo.svg"
 import { useDispatch } from "react-redux"
 import { setUserLikeList } from "@/redux/modules/user/action"
 import Playdetail from "../playdetail"
+import { setPlayerExpand } from "@/redux/modules/play/action"
 
 function Musicinfo() {
   const dispatch = useDispatch()
-  const [open, setOpen] = useState(false)
-  const { al, ar, id, userId, userLikeList } = useSelector(({ play, user }) => ({
+  const { al, ar, id, userId, userLikeList, playerExpand } = useSelector(({ play, user }) => ({
     al: play.currentSongDetail?.al || {},
     ar: play.currentSongDetail?.ar || [],
     id: play.currentSongDetail?.id,
     userId: user.userId,
     userLikeList: user.userLikeList,
+    playerExpand: play.playerExpand,
   }))
 
   const changeDrawer = () => {
-    setOpen(!open)
+    dispatch(setPlayerExpand(!playerExpand))
   }
   const changeLike = async () => {
     if (!userId) {
@@ -69,7 +70,7 @@ function Musicinfo() {
 
   return (
     <>
-      <div className={classNames("music-footer", { open })}>
+      <div className={classNames("music-footer", { open:playerExpand })}>
         <div className="details">
           <div className="normal">
             <DownOutlined title="收起音乐详情" onClick={changeDrawer} />
@@ -109,7 +110,7 @@ function Musicinfo() {
           </div>
         </div>
       </div>
-      <Playdetail open={open}/>
+      <Playdetail open={playerExpand} />
     </>
   )
 }

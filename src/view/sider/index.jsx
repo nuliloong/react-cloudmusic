@@ -62,7 +62,7 @@ export default function Sider() {
               <div key={item.key} className="mymenu">
                 <div className="mymenu-title">
                   <div>{item.title}</div>
-                  {/* {item.rightIcon ? item.rightIcon : null} */}
+                  {item.rightIcon ? item.rightIcon : null}
                 </div>
                 {item?.children?.map((i2) => (
                   <NavLink key={i2.id} className="mymenu-item menu-list-item" to={i2.path}>

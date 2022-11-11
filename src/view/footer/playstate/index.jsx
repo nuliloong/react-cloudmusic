@@ -1,5 +1,5 @@
 import { getSongUrl } from "@/api/modules/play"
-import { deleteSong, saveSongDetail, setPlayState, setSongUrl } from "@/redux/modules/play/action"
+import { deleteSong, saveSongDetail, setCurrentSecond, setPlayState, setSongUrl } from "@/redux/modules/play/action"
 import { formatDuration, isNumber, randomOther, to } from "@/utils/util"
 import {
   BranchesOutlined,
@@ -56,6 +56,7 @@ function PlayState() {
   // 监听音乐播放，获取已播放时长
   const onTimeUpdate = useCallback(
     (e) => {
+      dispatch(setCurrentSecond(e.target.currentTime))
       // 修改当前播放时间文字
       setTimePlay({ num: e.target.currentTime, str: formatDuration(e.target.currentTime) })
       // 修改播放条长度

@@ -9,11 +9,12 @@ import { playAll } from "@h/play"
 import Subscribers from "./Subscribers"
 import Comments from "./Comments"
 import { useParams, useSearchParams } from "react-router-dom"
+import { useCallback } from "react"
 
 export default function SonglistDetail() {
   // const [search] = useSearchParams()
   // const id = search.get("id")
-  const {id} = useParams()
+  const { id } = useParams()
   const [playlistDetail, setPlayListDetail] = useState({})
   const [type, setType] = useState(0)
   const [commentCount, setCommentCount] = useState(0)
@@ -21,21 +22,23 @@ export default function SonglistDetail() {
   const [loading, setLoading] = useState(true)
 
   // 获取歌单详情
-  const getDetail = async () => {
+  const getDetail = useCallback(async () => {
     const [err, res] = await to(getPlaylistDetail(id))
     if (res && res.playlist) {
       setPlayListDetail(res.playlist)
       setCommentCount(res.playlist?.commentCount)
     }
-  }
+  }, [id])
+
   // 获取歌单所有歌曲
-  const getSonglist = async () => {
+  const getSonglist = useCallback(async () => {
     const [err, res] = await to(getPlaylistAll(id))
     if (res && res.songs) {
       setSonglist(res.songs)
     }
     setLoading(false)
-  }
+  }, [id])
+
   useEffect(() => {
     setLoading(true)
     getDetail()
@@ -62,7 +65,12 @@ export default function SonglistDetail() {
   return (
     <div className="listdetail">
       <div className="listdetail-head">
-        <HeadDetail id={id} setPlayListDetail={setPlayListDetail} playlistDetail={playlistDetail} onPlayAll={() => playAll(songlist)} />
+        <HeadDetail
+          id={id}
+          setPlayListDetail={setPlayListDetail}
+          playlistDetail={playlistDetail}
+          onPlayAll={() => playAll(songlist)}
+        />
       </div>
       <ul className="listdetail-menu">
         {menulist.map((item, index) => (

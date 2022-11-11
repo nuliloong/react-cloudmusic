@@ -176,3 +176,36 @@ export const formatDate = (date, fmt) => {
 	}
 	return fmt;
 }
+
+// 格式化歌词
+export const formatLyric = (lyric_str) => {
+	const result = []
+	// 将歌词字符串 根据换行符 转换为 数组
+	let lyric_arr = lyric_str.split("\n")
+	// 遍历歌词数组
+	for (let i = 0; i < lyric_arr.length; i++) {
+		//得到每一行歌词
+		let lyric_row = lyric_arr[i]
+		//再将每一行歌词根据”]“分隔为时间和歌词,变为每行歌词数组
+		let lyric_row_arr = lyric_row.split("]")
+		// 通过pop()方法得到每行歌词文本
+		let lryic_row_text = lyric_row_arr.pop()
+		// 处理每行歌词时间
+		lyric_row_arr.forEach((item, index) => {
+			let LyricRowObj = {}
+			let time_arr = item.substr(1, item.length - 1).split(":") //去掉"[",并且分离出 分钟和秒
+			// 将每行歌词时间转换为秒
+			let seconds_row = time_arr[0] * 60 + Math.ceil(time_arr[1])
+			// 将每行歌词时间和文本添加到每行歌词对象中
+			if (lryic_row_text.trim().length !== 0) {
+				LyricRowObj.time = seconds_row
+				LyricRowObj.text = lryic_row_text
+				//再将每行歌词对象添加到数组中
+				result.push(LyricRowObj)
+			}
+		})
+	}
+
+	// 根据时间对歌词排序
+	return result.sort((a, b) => a.time - b.time)
+}

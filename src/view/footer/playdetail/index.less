@@ -1,0 +1,173 @@
+.playdetailbox {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 80px;
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  .drawerbg {
+    position: absolute;
+    top: -40%;
+    left: 25%;
+    width: 50%;
+    filter: blur(400px);
+  }
+  &-header {
+    height: 60px;
+    .anticon {
+      width: 60px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+  &-scrollbox {
+    flex: 1;
+    overflow-y: auto;
+  }
+  &-title {
+    text-align: center;
+    padding-bottom: 10px;
+    .songname {
+      margin-top: 10px;
+      font-size: 30px;
+      color: #000;
+    }
+  }
+  &-main {
+    height: 450px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+    &-record {
+      display: flex;
+      align-items: center;
+      position: relative;
+      .pointer {
+        position: absolute;
+        left: 50%;
+        top: -4%;
+        z-index: 2;
+        width: 35%;
+        transform-origin: 0 0;
+
+        animation-timing-function: linear;
+        animation-duration: 0.35s;
+        animation-fill-mode: forwards;
+        animation-play-state: running;
+
+        animation-name: switchsPause;
+        &.play {
+          animation-name: switchsPlay;
+        }
+      }
+      .record {
+        position: relative;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: 0 50px 50px;
+        animation-name: recordRotate;
+        animation-duration: 20s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-play-state: paused;
+        &.play {
+          animation-play-state: running;
+        }
+        .recordbg {
+          width: 250px;
+          border-radius: 50%;
+        }
+        .picurl {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 70%;
+          margin: auto;
+          border-radius: 50%;
+        }
+      }
+      @keyframes recordRotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes switchsPlay {
+        0% {
+          transform: rotate(-5deg);
+        }
+        100% {
+          transform: rotate(20deg);
+        }
+      }
+      @keyframes switchsPause {
+        0% {
+          transform: rotate(20deg);
+        }
+        100% {
+          transform: rotate(-5deg);
+        }
+      }
+    }
+    &-lyric {
+      width: 600px;
+      overflow-y: auto;
+      text-align: center;
+      padding: 100px 20px;
+      .lyric-item {
+        padding: 5px 0;
+      }
+      .active {
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+  }
+  &-comment {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px 30px 10px;
+    .ant-spin-nested-loading {
+      min-height: 50px;
+    }
+    &-new {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    &-pagination {
+      text-align: center;
+      width: 100%;
+      padding-top: 20px;
+    }
+  }
+}
+
+.palydetail {
+  .ant-drawer-body {
+    padding: 0;
+  }
+}
+.comment-modal {
+  .textarea {
+    position: relative;
+    textarea {
+      height: 70px;
+      resize: none;
+    }
+    &::after {
+      position: absolute;
+      bottom: 0;
+      right: 5px;
+    }
+  }
+}
