@@ -1,5 +1,5 @@
 import React from "react"
-import play from "@/assets/images/play.svg"
+import play from "@/assets/play.svg"
 import "./index.less"
 import ImgBox from "@/components/ImgBox"
 import RightList from "./RightList"

@@ -4,7 +4,7 @@ import React, { memo, useEffect, useState } from "react"
 import { to } from "@/utils/util"
 import { getQrKey, getQrBase, getQrState } from "@/api/modules/login"
 import { CheckCircleOutlined, LoadingOutlined } from "@ant-design/icons"
-import phone from "@/assets/images/phone.png"
+import phone from "@/assets/phone.png"
 import "./index.less"
 import { getAccountInfo } from "@/hooks/user"
 

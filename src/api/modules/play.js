@@ -11,3 +11,5 @@ export const getSongUrl = (id) => get('/song/url', { id })
 
 /**喜欢歌曲 */
 export const likeSong = (id, like) => get('/like', { id, like, timestamp: +new Date() })
+/**获取歌词 */
+export const getSongLyric = (id) => get('/lyric', { id })

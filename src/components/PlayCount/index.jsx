@@ -1,7 +1,7 @@
 import { formatCount } from "@/utils/util"
 import { memo } from "react"
 
-import playo from "@/assets/images/play-o.svg";
+import playo from "@/assets/play-o.svg";
 import "./index.less"
 
 const CountNode = ({ playCount }) => {

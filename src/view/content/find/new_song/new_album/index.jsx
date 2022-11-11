@@ -4,7 +4,7 @@ import { getTopAlbum } from "@/api/modules/find"
 import "./index.less"
 import classNames from "classnames"
 import ImgBox from "@/components/ImgBox"
-import play from "@/assets/images/play.svg"
+import play from "@/assets/play.svg"
 import { Spin } from "antd"
 import { useNavigate } from "react-router-dom"
 

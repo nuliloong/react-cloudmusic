@@ -22,7 +22,6 @@ export default function Subscribers({ id }) {
       setPage({ pageIndex, total: res.total })
       setLoading(false)
     }
-    console.log("res>>", res)
   }
   useEffect(() => {
     getlist(page.pageIndex)

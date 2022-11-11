@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from "react"
 import { to } from "@/utils/util"
 import { getTopSong } from "@/api/modules/find"
-import play from "@/assets/images/play.svg"
+import play from "@/assets/play.svg"
 import Img from "@c/Img"
 import "./index.less"
 

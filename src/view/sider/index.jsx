@@ -12,15 +12,15 @@ export default function Sider() {
   const userSongList = useSelector(({ user }) => user.userSongList)
   const navigate = useNavigate()
   const [myMenuList, setMyMenuList] = useState([
-    {
-      title: "我的音乐",
-      key: "music",
-      selectable: false,
-      children: [
-        { name: "我的音乐云盘", id: "music-1", path: "/mymusicclound" },
-        { name: "我的收藏", id: "music-2", path: "/mycollect" },
-      ],
-    },
+    // {
+    //   title: "我的音乐",
+    //   key: "music",
+    //   selectable: false,
+    //   children: [
+    //     { name: "我的音乐云盘", id: "music-1", path: "/mymusicclound" },
+    //     { name: "我的收藏", id: "music-2", path: "/mycollect" },
+    //   ],
+    // },
     {
       title: "创建歌单",
       key: "favorites",
@@ -39,9 +39,6 @@ export default function Sider() {
     })
     setMyMenuList(newList)
   }, [userSongList])
-  const favClick = (item) => {
-    navigate(item.path)
-  }
   const menuList = [
     { title: "发现音乐", path: "/find" },
     { title: "播客", path: "/dj" },
@@ -65,15 +62,10 @@ export default function Sider() {
               <div key={item.key} className="mymenu">
                 <div className="mymenu-title">
                   <div>{item.title}</div>
-                  {item.rightIcon ? item.rightIcon : null}
+                  {/* {item.rightIcon ? item.rightIcon : null} */}
                 </div>
                 {item?.children?.map((i2) => (
-                  <NavLink
-                    key={i2.id}
-                    className="mymenu-item menu-list-item"
-                    to={i2.path}
-                    // onClick={() => favClick(i2)}
-                  >
+                  <NavLink key={i2.id} className="mymenu-item menu-list-item" to={i2.path}>
                     {i2.name}
                   </NavLink>
                 ))}

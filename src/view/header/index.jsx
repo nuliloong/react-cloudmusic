@@ -18,9 +18,9 @@ import {
 } from "@ant-design/icons"
 import UserStateBox from "./userState"
 
-import logo from "@/assets/images/logo.svg"
-import vip from "@/assets/images/vip.svg"
-import search from "@/assets/images/search.svg"
+import logo from "@/assets/logo.svg"
+import vip from "@/assets/vip.svg"
+import search from "@/assets/search.svg"
 import { useSelector, useDispatch } from "react-redux"
 import { changeLoginShow } from "@/redux/modules/user/action"
 import { useState } from "react"

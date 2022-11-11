@@ -62,13 +62,15 @@ function HeadDetail(props) {
           <MyButton className="backr" onClick={onPlayAll} icon={<PlayCircleOutlined />}>
             播放全部
           </MyButton>
-          <MyButton
-            icon={playlistDetail.subscribed ? <CheckCircleOutlined /> : <FolderAddOutlined />}
-            onClick={subSongList}
-          >
-            {playlistDetail.subscribed ? "已收藏" : "收藏"}(
-            {formatCount(playlistDetail.subscribedCount || 0)})
-          </MyButton>
+          {userId === playlistDetail?.creator?.userId ? (
+            <MyButton
+              icon={playlistDetail.subscribed ? <CheckCircleOutlined /> : <FolderAddOutlined />}
+              onClick={subSongList}
+            >
+              {playlistDetail.subscribed ? "已收藏" : "收藏"}(
+              {formatCount(playlistDetail.subscribedCount || 0)})
+            </MyButton>
+          ) : null}
           <MyButton icon={<LogoutOutlined rotate="-45" />} onClick={sharePlayList}>
             分享({formatCount(playlistDetail.shareCount || 0)})
           </MyButton>

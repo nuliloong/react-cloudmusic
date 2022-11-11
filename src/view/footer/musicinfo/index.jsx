@@ -1,5 +1,5 @@
 import ImgBox from "@/components/ImgBox"
-import React,{ memo,useState } from "react"
+import React, { memo, useState } from "react"
 import "./index.less"
 import {
   DownOutlined,
@@ -15,21 +15,22 @@ import classNames from "classnames"
 import { useSelector } from "react-redux"
 import { to } from "@/utils/util"
 import { likeSong } from "@/api/modules/play"
-import logo from "@/assets/images/logo.svg"
+import logo from "@/assets/logo.svg"
+import { useDispatch } from "react-redux"
+import { setUserLikeList } from "@/redux/modules/user/action"
+import Playdetail from "../playdetail"
 
 function Musicinfo() {
+  const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
-  const [isLike, setLike] = useState(false)
-  const { al, ar, id, userId } = useSelector(({ play, user }) => ({
+  const { al, ar, id, userId, userLikeList } = useSelector(({ play, user }) => ({
     al: play.currentSongDetail?.al || {},
     ar: play.currentSongDetail?.ar || [],
     id: play.currentSongDetail?.id,
     userId: user.userId,
+    userLikeList: user.userLikeList,
   }))
 
-  const onClose = () => {
-    setOpen(false)
-  }
   const changeDrawer = () => {
     setOpen(!open)
   }
@@ -38,9 +39,12 @@ function Musicinfo() {
       message.warn("登录后才能收藏")
       return
     }
-    const [err, res] = await to(likeSong(id, !isLike))
-    if (res) {
-      setLike(!isLike)
+    const type = !userLikeList.includes(id)
+    const [err, res] = await to(likeSong(id, type))
+    if (res.code === 200) {
+      dispatch(setUserLikeList(type ? [...userLikeList, id] : userLikeList.filter((i) => i !== id)))
+    } else {
+      message.error("操作失败")
     }
   }
   // 如果当前没有音乐
@@ -57,7 +61,7 @@ function Musicinfo() {
     )
   }
   const LikeNode = () => {
-    if (isLike) {
+    if (userLikeList.includes(id)) {
       return <HeartFilled title="取消喜欢" className="unlike" onClick={changeLike} />
     }
     return <HeartOutlined title="喜欢" className="like" onClick={changeLike} />
@@ -72,8 +76,8 @@ function Musicinfo() {
           </div>
           <div className="details-state">
             <LikeNode />
-            <FolderAddOutlined title="收藏"/>
-            <LoginOutlined rotate="90" title="下载"/>
+            <FolderAddOutlined title="收藏" />
+            <LoginOutlined rotate="90" title="下载" />
             <LogoutOutlined rotate="-45" title="分享" />
           </div>
         </div>
@@ -105,22 +109,7 @@ function Musicinfo() {
           </div>
         </div>
       </div>
-      <Drawer
-        className="xxxxxxxxxx"
-        placement="bottom"
-        closable={false}
-        mask={false}
-        maskClosable={false}
-        height="100vh"
-        open={open}
-        key="bottom"
-        getContainer={document.querySelector('.ant-layout-has-sider')}
-      >
-        <button onClick={onClose}>xxxxx</button>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Drawer>
+      <Playdetail open={open}/>
     </>
   )
 }

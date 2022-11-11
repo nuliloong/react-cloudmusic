@@ -1,7 +1,7 @@
 import ImgBox from "@/components/ImgBox"
 import PlayCount from "@/components/PlayCount"
 import React from "react"
-import play from "@/assets/images/play.svg"
+import play from "@/assets/play.svg"
 import { memo } from "react"
 import "./index.less"
 import Img from "@/components/Img"
