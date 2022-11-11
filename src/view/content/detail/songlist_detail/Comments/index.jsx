@@ -47,7 +47,7 @@ export default function Comments({ id, setCommentCount }) {
   }
   useEffect(() => {
     getComments(page.pageIndex)
-  }, [])
+  }, [id])
   // 点赞评论
   const clickLike = async (item) => {
     const t = item.liked ? 0 : 1

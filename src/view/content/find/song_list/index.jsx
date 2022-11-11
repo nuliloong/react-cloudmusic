@@ -55,7 +55,7 @@ export default function SongList() {
     setLoading(false)
   }
   const songlistClick = (item) => {
-    navigate("/find/songlistdetail?id="+item.id)
+    navigate("/songlistdetail/"+item.id)
   }
 
   // 监听分类

@@ -16,23 +16,7 @@ const routers = [
     },
     children: [
       {
-        path: "/find/songlistdetail",
-        element: lazyLoad(React.lazy(() => import("@v/content/find/songlist_detail"))),
-        meta: {
-          requiresAuth: false,
-          title: "发现音乐-歌单详情",
-        },
-      },
-      {
-        path: "/find/albumdetail",
-        element: lazyLoad(React.lazy(() => import("@v/content/find/album_detail"))),
-        meta: {
-          requiresAuth: false,
-          title: "发现音乐-专辑详情",
-        },
-      },
-      {
-        path: "/find/daily_recommended",
+        path: "/daily_recommended",
         element: lazyLoad(React.lazy(() => import("@v/content/find/daily_recommended"))),
         meta: {
           requiresAuth: true,

@@ -17,8 +17,8 @@ export default function Sider() {
       key: "music",
       selectable: false,
       children: [
-        { name: "我的音乐云盘", id: "music-1" },
-        { name: "我的收藏", id: "music-2" },
+        { name: "我的音乐云盘", id: "music-1", path: "/mymusicclound" },
+        { name: "我的收藏", id: "music-2", path: "/mycollect" },
       ],
     },
     {
@@ -33,14 +33,14 @@ export default function Sider() {
   useEffect(() => {
     const newList = myMenuList.map((item) => {
       if (item.key === "favorites") {
-        item.children = userSongList
+        item.children = userSongList.map((i) => ({ ...i, path: "/songlistdetail/" + i.id }))
       }
       return item
     })
     setMyMenuList(newList)
   }, [userSongList])
   const favClick = (item) => {
-    navigate('/songlistdetail/'+item.id)
+    navigate(item.path)
   }
   const menuList = [
     { title: "发现音乐", path: "/find" },
@@ -68,13 +68,14 @@ export default function Sider() {
                   {item.rightIcon ? item.rightIcon : null}
                 </div>
                 {item?.children?.map((i2) => (
-                  <div
+                  <NavLink
                     key={i2.id}
                     className="mymenu-item menu-list-item"
-                    onClick={() => favClick(i2)}
+                    to={i2.path}
+                    // onClick={() => favClick(i2)}
                   >
                     {i2.name}
-                  </div>
+                  </NavLink>
                 ))}
               </div>
             ))

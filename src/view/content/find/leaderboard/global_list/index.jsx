@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 function GlobalList({ list }) {
   const navigate = useNavigate()
   const songlistClick = (item) => {
-    navigate("/find/songlistdetail?id="+item.id)
+    navigate("/songlistdetail/"+item.id)
   }
   return (
     <div className="globallist">

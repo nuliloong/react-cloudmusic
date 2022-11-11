@@ -26,7 +26,7 @@ function RightList(props) {
   //   if (!artists.length) return []
   // }
   const songlistClick = () => {
-    navigate("/find/songlistdetail?id=" + id)
+    navigate("/songlistdetail/"+id)
   }
   return (
     <>

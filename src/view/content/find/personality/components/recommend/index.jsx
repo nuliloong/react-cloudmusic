@@ -27,7 +27,7 @@ function Recommend(props) {
       message.warning("该功能需要登录")
       return
     }
-    navigate("/find/daily_recommended")
+    navigate("/daily_recommended")
   }
   useEffect(() => {
     getSongList()
@@ -36,7 +36,7 @@ function Recommend(props) {
     // e.stopPropagation()
   }
   const songlistClick = (item) => {
-    navigate("/find/songlistdetail?id="+item.id)
+    navigate("/songlistdetail/"+item.id)
   }
   return (
     <div className="list-box">

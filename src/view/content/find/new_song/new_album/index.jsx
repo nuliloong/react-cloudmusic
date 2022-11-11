@@ -48,7 +48,7 @@ function NewAlbum() {
   // }, [])
   const navigate = useNavigate()
   const albumClick = (item) => {
-    navigate("/find/albumdetail?id="+item.id)
+    navigate("/albumdetail/"+item.id)
   }
 
   return (

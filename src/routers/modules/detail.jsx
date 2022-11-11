@@ -12,15 +12,23 @@ const routers = [
 	{
 		element: <Layout />,
 		meta: {
-			title: "播客"
+			title: "详情"
 		},
 		children: [
 			{
 				path: "/songlistdetail/:id",
-				element: lazyLoad(React.lazy(() => import("@v/content/find/songlist_detail"))),
+				element: lazyLoad(React.lazy(() => import("@v/content/detail/songlist_detail"))),
 				meta: {
 					requiresAuth: false,
-					title: "发现音乐-歌单详情"
+					title: "歌单详情"
+				}
+			},
+			{
+				path: "/albumdetail/:id",
+				element: lazyLoad(React.lazy(() => import("@v/content/detail/album_detail"))),
+				meta: {
+					requiresAuth: false,
+					title: "专辑详情"
 				}
 			}
 		]

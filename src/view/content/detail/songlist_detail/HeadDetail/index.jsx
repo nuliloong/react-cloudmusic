@@ -74,7 +74,7 @@ function HeadDetail(props) {
           </MyButton>
         </div>
         <div>
-          标签：
+          {playlistDetail?.tags?.length ? "标签：" : null}
           {playlistDetail?.tags?.map((item, index) => (
             <Tag key={index} color="volcano">
               {item}
@@ -97,9 +97,7 @@ function HeadDetail(props) {
                 {isExpand ? <CaretUpOutlined /> : <CaretDownOutlined />}
               </div>
             </>
-          ) : (
-            <div>简介：暂无简介</div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

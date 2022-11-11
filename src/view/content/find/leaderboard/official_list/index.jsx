@@ -17,7 +17,7 @@ export default function OfficialList(props) {
   }
   const navigate = useNavigate()
   const songlistClick = (item) => {
-    navigate("/find/songlistdetail?id="+item.id)
+    navigate("/songlistdetail/"+item.id)
   }
   return (
     <div className="officiallist">

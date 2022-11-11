@@ -26,7 +26,7 @@ export default function Subscribers({ id }) {
   }
   useEffect(() => {
     getlist(page.pageIndex)
-  }, [])
+  }, [id])
 
   return (
     <Spin spinning={loading}>
